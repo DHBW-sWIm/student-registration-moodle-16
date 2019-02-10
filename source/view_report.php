@@ -27,11 +27,11 @@ $sum2 = array('SUM', 0, 0, 0, 0, 0, 0, 0, 0);
 $companies = array();
 
 foreach ($records as $record){
-    array_push($companies, $record->company);
+    if($record->company != null || $record->company != '') {
+        array_push($companies, $record->company);
+    }
 }
-
 $companies = array_unique($companies);
-echo $OUTPUT->heading(implode(',',$companies));
 
 // bind data to html table
 foreach ($companies as $comp) {
