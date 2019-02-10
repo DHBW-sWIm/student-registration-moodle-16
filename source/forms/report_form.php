@@ -15,6 +15,10 @@ class report_form
         $mform->addElement('text', 'year2', 'Second year to compare');
         $mform->setType('year', PARAM_INT);
 
+        $mform->addElement('submit', 'btnSubmit', 'Submit');
+
+        $mform->addElement('hidden', 'id');
+        $mform->setType('id', PARAM_INT);
     }
 
     //Custom validation should be added here
