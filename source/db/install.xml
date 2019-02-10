@@ -1,6 +1,6 @@
 <XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="mod/sefutestplugin/db" VERSION="20190203" COMMENT="XMLDB file for Moodle mod/sefutestplugin" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-        <TABLE NAME="mod_sefutestplugin" COMMENT="Default comment for sefutestplugin, please edit me">
+        <TABLE NAME="sefutestplugin" COMMENT="Default comment for sefutestplugin, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course sefutestplugin activity belongs to"/>
@@ -18,7 +18,7 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="mod_stats" COMMENT="Table for Statistics and Capacity Planning">
+        <TABLE NAME="sefutestplugin_stats" COMMENT="Table for Statistics and Capacity Planning">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="year" TYPE="int" LENGTH="4" NOTNULL="true" SEQUENCE="false"/>
