@@ -17,7 +17,7 @@ $records = $DB->get_records($tablename);
 // init html table1 (compare year1 to year2)
 $table1 = new html_table();
 $table1->head = array('Company', 'Year', 'Total', 'SE', 'SC', 'AM', 'DS', 'EG', 'EH', 'IMBIT', 'Year', 'Total', 'SE', 'SC', 'AM', 'DS', 'EG', 'EH', 'IMBIT');
-$sum1 = array('SUM', $SESSION->report_cfg->$year1, 0, 0, 0, 0, 0, 0, 0, 0, $SESSION->report_cfg->$year2, 0, 0, 0, 0, 0, 0, 0, 0);
+$sum1 = array('SUM', $SESSION->report_cfg->year1, 0, 0, 0, 0, 0, 0, 0, 0, $SESSION->report_cfg->year2, 0, 0, 0, 0, 0, 0, 0, 0);
 
 // init html table2 (difference between year1 and year2)
 $table2 = new html_table();
