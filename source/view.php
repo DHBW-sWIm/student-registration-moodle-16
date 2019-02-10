@@ -53,5 +53,9 @@ if ($mform->is_cancelled()) {
     $mform->display();
 }
 
+// navigate back to detail view (view_detail.php)
+echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id)),
+    'To Details', $attributes = null);
+
 // Finish the page.
 echo $OUTPUT->footer();
