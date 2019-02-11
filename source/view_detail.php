@@ -8,29 +8,31 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-// Table form Session var (last inserted record)
-echo $OUTPUT->heading('Inserted DB record:');
+if(isset($SESSION->formdata)) {
+    // Table form Session var (last inserted record)
+    echo $OUTPUT->heading('Inserted DB record:');
 
-//Tabelle
-$table = new html_table();
-$table->head = array('Company', 'Year', 'SE', 'SC', 'AM', 'DS', 'EG', 'EH', 'IMBIT');
+    //Tabelle
+    $table = new html_table();
+    $table->head = array('Company', 'Year', 'SE', 'SC', 'AM', 'DS', 'EG', 'EH', 'IMBIT');
 
-//Datensatz zuweisen
-$company = $SESSION->formdata->company;
-$year = $SESSION->formdata->year;
-$wi_se = $SESSION->formdata->wi_se;
-$wi_sc = $SESSION->formdata->wi_sc;
-$wi_am = $SESSION->formdata->wi_am;
-$wi_ds = $SESSION->formdata->wi_ds;
-$wi_eg = $SESSION->formdata->wi_eg;
-$wi_eh = $SESSION->formdata->wi_eh;
-$wi_imbit = $SESSION->formdata->wi_imbit;
+    //Datensatz zuweisen
+    $company = $SESSION->formdata->company;
+    $year = $SESSION->formdata->year;
+    $wi_se = $SESSION->formdata->wi_se;
+    $wi_sc = $SESSION->formdata->wi_sc;
+    $wi_am = $SESSION->formdata->wi_am;
+    $wi_ds = $SESSION->formdata->wi_ds;
+    $wi_eg = $SESSION->formdata->wi_eg;
+    $wi_eh = $SESSION->formdata->wi_eh;
+    $wi_imbit = $SESSION->formdata->wi_imbit;
 
-//Daten zuweisen an HTML-Tabelle
-$table->data[] = array($company, $year, $wi_se, $wi_sc, $wi_am, $wi_ds, $wi_eg, $wi_eh, $wi_imbit);
+    //Daten zuweisen an HTML-Tabelle
+    $table->data[] = array($company, $year, $wi_se, $wi_sc, $wi_am, $wi_ds, $wi_eg, $wi_eh, $wi_imbit);
 
-//Tabelle ausgeben
-echo html_writer::table($table);
+    //Tabelle ausgeben
+    echo html_writer::table($table);
+}
 
 //table to show all records
 echo $OUTPUT->heading('All records:');
