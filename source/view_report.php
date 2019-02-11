@@ -8,6 +8,12 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
+if($SESSION->report_cfg->year1 <  $SESSION->report_cfg->year2){
+    $temp = $SESSION->report_cfg->year2;
+    $SESSION->report_cfg->year2 = $SESSION->report_cfg->year1;
+    $SESSION->report_cfg->year1 = $temp;
+}
+
 // select table
 $tablename = 'stats';
 
