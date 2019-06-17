@@ -5,16 +5,21 @@ class start_form extends moodleform {
     //Add elements to form
     public function definition() {
         global $CFG;
+        global $USER;
+
+        print_object($USER);
 
         $mform = $this->_form; // Don't forget the underscore!
 
         $mform->addElement('header', 'header', 'Enter number of Students:');
 
-        $mform->addElement('text', 'company', 'Unternehmen');
-        $mform->setType('company', PARAM_TEXT);
+        // Unternehmen über $USER-Objekt abfragen
+        //$mform->addElement('text', 'company', 'Unternehmen');
+        //$mform->setType('company', PARAM_TEXT);
 
-        $mform->addElement('text', 'year', 'Planungsjahr');
-        $mform->setType('year', PARAM_INT);
+        // Planungshorizont über Zeit abfragen
+        //$mform->addElement('text', 'year', 'Planungsjahr');
+        //$mform->setType('year', PARAM_INT);
 
         $mform->addElement('text', 'wi_se', 'Software Engineering');
         $mform->setType('wi_se', PARAM_INT);
