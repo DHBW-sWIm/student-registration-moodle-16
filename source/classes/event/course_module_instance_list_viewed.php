@@ -1,21 +1,21 @@
 <?php
 
 /**
- * The mod_sefutestplugin instance list viewed event.
+ * The mod_dmtestplugin instance list viewed event.
  *
- * @package    mod_sefutestplugin
+ * @package    mod_dmtestplugin
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_sefutestplugin\event;
+namespace mod_dmtestplugin\event;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * The mod_sefutestplugin instance list viewed event class.
+ * The mod_dmtestplugin instance list viewed event class.
  *
- * @package    mod_sefutestplugin
+ * @package    mod_dmtestplugin
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */

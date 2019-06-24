@@ -13,7 +13,7 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot . '/course/moodleform_mod.php');
 
-class mod_sefutestplugin_mod_form extends moodleform_mod {
+class mod_dmtestplugin_mod_form extends moodleform_mod {
 
     /**
      * Defines forms elements
@@ -27,7 +27,7 @@ class mod_sefutestplugin_mod_form extends moodleform_mod {
         $mform->addElement('header', 'general', get_string('general', 'form'));
 
         // Adding the standard "name" field.
-        $mform->addElement('text', 'name', get_string('sefutestpluginname', 'sefutestplugin'), array('size' => '64'));
+        $mform->addElement('text', 'name', get_string('dmtestpluginname', 'dmtestplugin'), array('size' => '64'));
         if (!empty($CFG->formatstringstriptags)) {
             $mform->setType('name', PARAM_TEXT);
         } else {
@@ -35,7 +35,7 @@ class mod_sefutestplugin_mod_form extends moodleform_mod {
         }
         $mform->addRule('name', null, 'required', null, 'client');
         $mform->addRule('name', get_string('maximumchars', '', 255), 'maxlength', 255, 'client');
-        $mform->addHelpButton('name', 'sefutestpluginname', 'sefutestplugin');
+        $mform->addHelpButton('name', 'dmtestpluginname', 'dmtestplugin');
 
         // Adding the standard "intro" and "introformat" fields.
         if ($CFG->branch >= 29) {
@@ -44,12 +44,12 @@ class mod_sefutestplugin_mod_form extends moodleform_mod {
             $this->add_intro_editor();
         }
 
-        // Adding the rest of sefutestplugin settings, spreading all them into this fieldset
+        // Adding the rest of dmtestplugin settings, spreading all them into this fieldset
         // ... or adding more fieldsets ('header' elements) if needed for better logic.
-        $mform->addElement('static', 'label1', 'sefutestpluginsetting1', 'Your sefutestplugin fields go here. Replace me!');
+        $mform->addElement('static', 'label1', 'dmtestpluginsetting1', 'Your dmtestplugin fields go here. Replace me!');
 
-        $mform->addElement('header', 'sefutestpluginfieldset', get_string('sefutestpluginfieldset', 'sefutestplugin'));
-        $mform->addElement('static', 'label2', 'sefutestpluginsetting2', 'Your sefutestplugin fields go here. Replace me!');
+        $mform->addElement('header', 'dmtestpluginfieldset', get_string('dmtestpluginfieldset', 'dmtestplugin'));
+        $mform->addElement('static', 'label2', 'dmtestpluginsetting2', 'Your dmtestplugin fields go here. Replace me!');
 
         // Add standard grading elements.
         $this->standard_grading_coursemodule_elements();

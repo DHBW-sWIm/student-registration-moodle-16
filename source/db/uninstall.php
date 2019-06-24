@@ -5,7 +5,7 @@
  *
  * @see uninstall_plugin()
  *
- * @package    mod_sefutestplugin
+ * @package    mod_dmtestplugin
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -13,6 +13,6 @@
 /**
  * Custom uninstallation procedure
  */
-function xmldb_sefutestplugin_uninstall() {
+function xmldb_dmtestplugin_uninstall() {
     return true;
 }

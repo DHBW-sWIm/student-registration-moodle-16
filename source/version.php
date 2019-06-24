@@ -2,8 +2,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_sefutestplugin';
-$plugin->version = 2019020200;
+$plugin->component = 'mod_dmtestplugin';
+$plugin->version = 2019061712;
 $plugin->release = 'v0.0';
 $plugin->requires = 2014051200;
 $plugin->maturity = MATURITY_ALPHA;

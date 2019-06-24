@@ -6,19 +6,19 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/mod/sefutestplugin/backup/moodle2/restore_sefutestplugin_stepslib.php');
+require_once($CFG->dirroot . '/mod/dmtestplugin/backup/moodle2/restore_dmtestplugin_stepslib.php');
 
 /**
- * Restore task for the sefutestplugin activity module
+ * Restore task for the dmtestplugin activity module
  *
  * Provides all the settings and steps to perform complete restore of the activity.
  *
- * @package   mod_sefutestplugin
+ * @package   mod_dmtestplugin
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class restore_sefutestplugin_activity_task extends restore_activity_task {
+class restore_dmtestplugin_activity_task extends restore_activity_task {
 
     /**
      * Define (add) particular settings this activity can have
@@ -32,7 +32,7 @@ class restore_sefutestplugin_activity_task extends restore_activity_task {
      */
     protected function define_my_steps() {
         // We have just one structure step here.
-        $this->add_step(new restore_sefutestplugin_activity_structure_step('sefutestplugin_structure', 'sefutestplugin.xml'));
+        $this->add_step(new restore_dmtestplugin_activity_structure_step('dmtestplugin_structure', 'dmtestplugin.xml'));
     }
 
     /**
@@ -42,7 +42,7 @@ class restore_sefutestplugin_activity_task extends restore_activity_task {
     static public function define_decode_contents() {
         $contents = array();
 
-        $contents[] = new restore_decode_content('sefutestplugin', array('intro'), 'sefutestplugin');
+        $contents[] = new restore_decode_content('dmtestplugin', array('intro'), 'dmtestplugin');
 
         return $contents;
     }
@@ -54,8 +54,8 @@ class restore_sefutestplugin_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         $rules = array();
 
-        $rules[] = new restore_decode_rule('sefutestpluginVIEWBYID', '/mod/sefutestplugin/view.php?id=$1', 'course_module');
-        $rules[] = new restore_decode_rule('sefutestpluginINDEX', '/mod/sefutestplugin/index.php?id=$1', 'course');
+        $rules[] = new restore_decode_rule('dmtestpluginVIEWBYID', '/mod/dmtestplugin/view.php?id=$1', 'course_module');
+        $rules[] = new restore_decode_rule('dmtestpluginINDEX', '/mod/dmtestplugin/index.php?id=$1', 'course');
 
         return $rules;
 
@@ -64,15 +64,15 @@ class restore_sefutestplugin_activity_task extends restore_activity_task {
     /**
      * Define the restore log rules that will be applied
      * by the {@link restore_logs_processor} when restoring
-     * sefutestplugin logs. It must return one array
+     * dmtestplugin logs. It must return one array
      * of {@link restore_log_rule} objects
      */
     static public function define_restore_log_rules() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('sefutestplugin', 'add', 'view.php?id={course_module}', '{sefutestplugin}');
-        $rules[] = new restore_log_rule('sefutestplugin', 'update', 'view.php?id={course_module}', '{sefutestplugin}');
-        $rules[] = new restore_log_rule('sefutestplugin', 'view', 'view.php?id={course_module}', '{sefutestplugin}');
+        $rules[] = new restore_log_rule('dmtestplugin', 'add', 'view.php?id={course_module}', '{dmtestplugin}');
+        $rules[] = new restore_log_rule('dmtestplugin', 'update', 'view.php?id={course_module}', '{dmtestplugin}');
+        $rules[] = new restore_log_rule('dmtestplugin', 'view', 'view.php?id={course_module}', '{dmtestplugin}');
 
         return $rules;
     }
@@ -90,7 +90,7 @@ class restore_sefutestplugin_activity_task extends restore_activity_task {
     static public function define_restore_log_rules_for_course() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('sefutestplugin', 'view all', 'index.php?id={course}', null);
+        $rules[] = new restore_log_rule('dmtestplugin', 'view all', 'index.php?id={course}', null);
 
         return $rules;
     }
