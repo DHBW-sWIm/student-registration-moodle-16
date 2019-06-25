@@ -12,7 +12,7 @@ require_once(__DIR__ . '/lib/autoload.php');
 
 defined('MOODLE_INTERNAL') || die();
 
-function sefutestplugin_do_something($string) {
+function demandplanning_do_something($string) {
     return $string;
 }
 

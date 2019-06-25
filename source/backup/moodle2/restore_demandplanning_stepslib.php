@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Define all the restore steps that will be used by the restore_sefutestplugin_activity_task
+ * Define all the restore steps that will be used by the restore_demandplanning_activity_task
  */
 
 /**
- * Structure step to restore one sefutestplugin activity
+ * Structure step to restore one demandplanning activity
  *
- * @package   mod_sefutestplugin
+ * @package   mod_demandplanning
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class restore_sefutestplugin_activity_structure_step extends restore_activity_structure_step {
+class restore_demandplanning_activity_structure_step extends restore_activity_structure_step {
 
     /**
      * Defines structure of path elements to be processed during the restore
@@ -22,7 +22,7 @@ class restore_sefutestplugin_activity_structure_step extends restore_activity_st
     protected function define_structure() {
 
         $paths = array();
-        $paths[] = new restore_path_element('sefutestplugin', '/activity/sefutestplugin');
+        $paths[] = new restore_path_element('demandplanning', '/activity/demandplanning');
 
         // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
@@ -33,7 +33,7 @@ class restore_sefutestplugin_activity_structure_step extends restore_activity_st
      *
      * @param array $data parsed element data
      */
-    protected function process_sefutestplugin($data) {
+    protected function process_demandplanning($data) {
         global $DB;
 
         $data = (object) $data;
@@ -53,8 +53,8 @@ class restore_sefutestplugin_activity_structure_step extends restore_activity_st
             $data->grade = -($this->get_mappingid('scale', abs($data->grade)));
         }
 
-        // Create the sefutestplugin instance.
-        $newitemid = $DB->insert_record('sefutestplugin', $data);
+        // Create the demandplanning instance.
+        $newitemid = $DB->insert_record('demandplanning', $data);
         $this->apply_activity_instance($newitemid);
     }
 
@@ -62,7 +62,7 @@ class restore_sefutestplugin_activity_structure_step extends restore_activity_st
      * Post-execution actions
      */
     protected function after_execute() {
-        // Add sefutestplugin related files, no need to match by itemname (just internally handled context).
-        $this->add_related_files('mod_sefutestplugin', 'intro', null);
+        // Add demandplanning related files, no need to match by itemname (just internally handled context).
+        $this->add_related_files('mod_demandplanning', 'intro', null);
     }
 }
