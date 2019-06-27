@@ -30,7 +30,7 @@ foreach ($records as $record) {
     $firstname = $record->firstname;
     $surname = $record->surname;
     $email = $record->email;
-    $birthdate = $record->gmdate("d-m-Y", birthdate);
+    $birthdate = gmdate("d-m-Y", $record->birthdate);
     $course = $record->course;
     $company = $record->company;
     $table_all_records->data[] = array($firstname, $surname, $email, $birthdate, $course, $company);
@@ -56,9 +56,8 @@ if ($mform->is_cancelled()) {
     $record->company = $fromform->company;
 
     $lastinsertid = $DB->insert_record('students', $record, false);
-    $table_all_records.refresh();
-    $mform = new start_form();
-    $mform->render();
+    $returnurl = new moodle_url('/mod/studreg/view.php', array('id' => $cm->id));
+    redirect($returnurl);
 
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
