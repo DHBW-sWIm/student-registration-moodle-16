@@ -1,11 +1,11 @@
-<XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="mod/sefutestplugin/db" VERSION="20190203" COMMENT="XMLDB file for Moodle mod/sefutestplugin" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+<XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="mod/studreg/db" VERSION="20190203" COMMENT="XMLDB file for Moodle mod/studreg" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-        <TABLE NAME="sefutestplugin" COMMENT="Default comment for sefutestplugin, please edit me">
+        <TABLE NAME="studreg" COMMENT="Default comment for studreg, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course sefutestplugin activity belongs to"/>
+                <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course studreg activity belongs to"/>
                 <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances"/>
-                <FIELD NAME="intro" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="General introduction of the sefutestplugin activity"/>
+                <FIELD NAME="intro" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="General introduction of the studreg activity"/>
                 <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)"/>
                 <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
                 <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
@@ -18,18 +18,15 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="sefutestplugin_stats" COMMENT="Table for Statistics and Capacity Planning">
+        <TABLE NAME="students" COMMENT="Table for Student Registration">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="year" TYPE="int" LENGTH="4" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="company" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="wi_se" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_sc" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_am" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_ds" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_eg" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_eh" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_imbit" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="firstname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="surname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="email" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="birthdate" TYPE="char" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="course" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="company" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

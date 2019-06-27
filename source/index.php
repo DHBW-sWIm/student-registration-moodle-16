@@ -13,12 +13,12 @@ require_course_login($course);
 $params = array(
     'context' => context_course::instance($course->id)
 );
-$event = \mod_sefutestplugin\event\course_module_instance_list_viewed::create($params);
+$event = \mod_studreg\event\course_module_instance_list_viewed::create($params);
 $event->add_record_snapshot('course', $course);
 $event->trigger();
 
-$strname = get_string('modulenameplural', 'mod_sefutestplugin');
-$PAGE->set_url('/mod/sefutestplugin/index.php', array('id' => $id));
+$strname = get_string('modulenameplural', 'mod_studreg');
+$PAGE->set_url('/mod/studreg/index.php', array('id' => $id));
 $PAGE->navbar->add($strname);
 $PAGE->set_title("$course->shortname: $strname");
 $PAGE->set_heading($course->fullname);
@@ -27,27 +27,27 @@ $PAGE->set_pagelayout('incourse');
 echo $OUTPUT->header();
 echo $OUTPUT->heading($strname);
 
-if (!$sefutestplugins = get_all_instances_in_course('sefutestplugin', $course)) {
-    notice(get_string('nonewmodules', 'sefutestplugin'), new moodle_url('/course/view.php', array('id' => $course->id)));
+if (!$studregs = get_all_instances_in_course('studreg', $course)) {
+    notice(get_string('nonewmodules', 'studreg'), new moodle_url('/course/view.php', array('id' => $course->id)));
 }
 
 $usesections = course_format_uses_sections($course->format);
 
-$table = new html_table();
-$table->attributes['class'] = 'generaltable mod_index';
+$table_inserted_record = new html_table();
+$table_inserted_record->attributes['class'] = 'generaltable mod_index';
 
 if ($usesections) {
     $strsectionname = get_string('sectionname', 'format_' . $course->format);
-    $table->head = array($strsectionname, $strname);
-    $table->align = array('center', 'left');
+    $table_inserted_record->head = array($strsectionname, $strname);
+    $table_inserted_record->align = array('center', 'left');
 } else {
-    $table->head = array($strname);
-    $table->align = array('left');
+    $table_inserted_record->head = array($strname);
+    $table_inserted_record->align = array('left');
 }
 
 $modinfo = get_fast_modinfo($course);
 $currentsection = '';
-foreach ($modinfo->instances['sefutestplugin'] as $cm) {
+foreach ($modinfo->instances['studreg'] as $cm) {
     $row = array();
     if ($usesections) {
         if ($cm->sectionnum !== $currentsection) {
@@ -55,7 +55,7 @@ foreach ($modinfo->instances['sefutestplugin'] as $cm) {
                 $row[] = get_section_name($course, $cm->sectionnum);
             }
             if ($currentsection !== '') {
-                $table->data[] = 'hr';
+                $table_inserted_record->data[] = 'hr';
             }
             $currentsection = $cm->sectionnum;
         }
@@ -65,9 +65,9 @@ foreach ($modinfo->instances['sefutestplugin'] as $cm) {
 
     $row[] = html_writer::link(new moodle_url('view.php', array('id' => $cm->id)),
         $cm->get_formatted_name(), $class);
-    $table->data[] = $row;
+    $table_inserted_record->data[] = $row;
 }
 
-echo html_writer::table($table);
+echo html_writer::table($table_inserted_record);
 
 echo $OUTPUT->footer();
