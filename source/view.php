@@ -6,33 +6,18 @@ require_once(__DIR__ . '/locallib.php');
 
 include(__DIR__ . '/view_init.php');
 
-// @todo Replace the following lines with you own code.
-
 global $SESSION;
 
-
-//Example of using .ini
-$ini = parse_ini_file(__DIR__ . '/.ini');
-$camunda_url = $ini['camunda_url'];
-
-$client = new GuzzleHttp\Client();
-
+echo $OUTPUT->heading('Capacity Planning Prototype');
 
 // Implement form for user
-require_once(__DIR__ . '/forms/start_form.php');
+// view.php gets start_form class which extends moodleform
 
-$mform = new start_form();
+    require_once(__DIR__ . '/forms/start_form.php');
 
-$chart = new \core\chart_line();
-$series1 = new \core\chart_series('Jahr 2018',[23,45,75,111,132,420]);
-$series2 = new \core\chart_series('Jahr 2019',[22,41,63,121,224,420]);
-$chart->add_series($series1);
-$chart->add_series($series2);
-$chart->set_labels(['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni']);
-echo "<div style='padding:50%; padding-left:0; padding-top:0'>".$OUTPUT->render($chart)."</div>";
+    $mform = new start_form();
 
-
-$mform->render();
+    $mform->render();
 
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
@@ -40,7 +25,21 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     //Handle form successful operation, if button is present on form
     $SESSION->formdata = $fromform;
-    $returnurl = new moodle_url('/mod/dmtestplugin/view_detail.php', array('id' => $cm->id));
+
+    $record = new stdClass();
+    $record->company      = $USER->institution;
+    $record->year         = $fromform->year;
+    $record->wi_se        = $fromform->wi_se;
+    $record->wi_sc        = $fromform->wi_sc;
+    $record->wi_am        = $fromform->wi_am;
+    $record->wi_ds        = $fromform->wi_ds;
+    $record->wi_eg        = $fromform->wi_eg;
+    $record->wi_eh        = $fromform->wi_eh;
+    $record->wi_imbit     = $fromform->wi_imbit;
+
+    $lastinsertid = $DB->insert_record('demand', $record, false);
+
+    $returnurl = new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -53,6 +52,10 @@ if ($mform->is_cancelled()) {
     //displays the form
     $mform->display();
 }
+
+// navigate back to detail view (view_detail.php)
+echo $OUTPUT->single_button(new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id)),
+    'To Details', $attributes = null);
 
 // Finish the page.
 echo $OUTPUT->footer();

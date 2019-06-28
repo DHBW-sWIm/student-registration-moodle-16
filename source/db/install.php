@@ -6,7 +6,7 @@
  * This file replaces the legacy STATEMENTS section in db/install.xml,
  * lib.php/modulename_install() post installation hook and partially defaults.php.
  *
- * @package    mod_dmtestplugin
+ * @package    mod_demandplanning
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -16,7 +16,7 @@
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_dmtestplugin_install() {
+function xmldb_demandplanning_install() {
 }
 
 /**
@@ -24,5 +24,5 @@ function xmldb_dmtestplugin_install() {
  *
  * @see upgrade_plugins_modules()
  */
-function xmldb_dmtestplugin_install_recovery() {
+function xmldb_demandplanning_install_recovery() {
 }
