@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Capability definitions for the demandplanning module
+ * Capability definitions for the recordhours module
  *
  * The capabilities are loaded into the database table when the module is
  * installed or updated. Whenever the capability definitions are updated,
@@ -25,7 +25,7 @@
  *
  * The variable name for the capability definitions array is $capabilities
  *
- * @package    mod_demandplanning
+ * @package    mod_recordhours
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -34,32 +34,32 @@ defined('MOODLE_INTERNAL') || die();
 
 // Modify capabilities as needed and remove this comment.
 $capabilities = array(
-    'mod/demandplanning:addinstance' => array(
-        'riskbitmask' => RISK_XSS,
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_COURSE,
-        'archetypes' => array(
-            'editingteacher' => CAP_ALLOW,
-            'manager' => CAP_ALLOW
+        'mod/recordhours:addinstance' => array(
+                'riskbitmask' => RISK_XSS,
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_COURSE,
+                'archetypes' => array(
+                        'editingteacher' => CAP_ALLOW,
+                        'manager' => CAP_ALLOW
+                ),
+                'clonepermissionsfrom' => 'moodle/course:manageactivities'
         ),
-        'clonepermissionsfrom' => 'moodle/course:manageactivities'
-    ),
 
-    'mod/demandplanning:view' => array(
-        'captype' => 'read',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes' => array(
-            'guest' => CAP_ALLOW,
-            'user' => CAP_ALLOW,
-        )
-    ),
+        'mod/recordhours:view' => array(
+                'captype' => 'read',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'guest' => CAP_ALLOW,
+                        'user' => CAP_ALLOW,
+                )
+        ),
 
-    'mod/demandplanning:submit' => array(
-        'riskbitmask' => RISK_SPAM,
-        'captype' => 'write',
-        'contextlevel' => CONTEXT_MODULE,
-        'archetypes' => array(
-            'student' => CAP_ALLOW
-        )
-    ),
+        'mod/recordhours:submit' => array(
+                'riskbitmask' => RISK_SPAM,
+                'captype' => 'write',
+                'contextlevel' => CONTEXT_MODULE,
+                'archetypes' => array(
+                        'student' => CAP_ALLOW
+                )
+        ),
 );

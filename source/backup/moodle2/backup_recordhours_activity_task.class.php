@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Defines backup_demandplanning_activity_task class
+ * Defines backup_recordhours_activity_task class
  */
 
 defined('MOODLE_INTERNAL') || die;
 
-require_once($CFG->dirroot . '/mod/demandplanning/backup/moodle2/backup_demandplanning_stepslib.php');
+require_once($CFG->dirroot . '/mod/recordhours/backup/moodle2/backup_recordhours_stepslib.php');
 
 /**
- * Provides the steps to perform one complete backup of the demandplanning instance
+ * Provides the steps to perform one complete backup of the recordhours instance
  *
- * @package   mod_demandplanning
+ * @package   mod_recordhours
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class backup_demandplanning_activity_task extends backup_activity_task {
+class backup_recordhours_activity_task extends backup_activity_task {
 
     /**
      * No specific settings for this activity
@@ -25,10 +25,10 @@ class backup_demandplanning_activity_task extends backup_activity_task {
     }
 
     /**
-     * Defines a backup step to store the instance data in the demandplanning.xml file
+     * Defines a backup step to store the instance data in the recordhours.xml file
      */
     protected function define_my_steps() {
-        $this->add_step(new backup_demandplanning_activity_structure_step('demandplanning_structure', 'demandplanning.xml'));
+        $this->add_step(new backup_recordhours_activity_structure_step('recordhours_structure', 'recordhours.xml'));
     }
 
     /**
@@ -42,13 +42,13 @@ class backup_demandplanning_activity_task extends backup_activity_task {
 
         $base = preg_quote($CFG->wwwroot, '/');
 
-        // Link to the list of demandplannings.
-        $search = '/(' . $base . '\/mod\/demandplanning\/index.php\?id\=)([0-9]+)/';
-        $content = preg_replace($search, '$@demandplanningINDEX*$2@$', $content);
+        // Link to the list of recordhourss.
+        $search = '/(' . $base . '\/mod\/recordhours\/index.php\?id\=)([0-9]+)/';
+        $content = preg_replace($search, '$@recordhoursINDEX*$2@$', $content);
 
-        // Link to demandplanning view by moduleid.
-        $search = '/(' . $base . '\/mod\/demandplanning\/view.php\?id\=)([0-9]+)/';
-        $content = preg_replace($search, '$@demandplanningVIEWBYID*$2@$', $content);
+        // Link to recordhours view by moduleid.
+        $search = '/(' . $base . '\/mod\/recordhours\/view.php\?id\=)([0-9]+)/';
+        $content = preg_replace($search, '$@recordhoursVIEWBYID*$2@$', $content);
 
         return $content;
     }

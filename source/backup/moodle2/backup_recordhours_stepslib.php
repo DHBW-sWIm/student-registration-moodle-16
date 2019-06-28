@@ -1,20 +1,20 @@
 <?php
 
 /**
- * Define all the backup steps that will be used by the backup_demandplanning_activity_task
+ * Define all the backup steps that will be used by the backup_recordhours_activity_task
  */
 
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * Define the complete demandplanning structure for backup, with file and id annotations
+ * Define the complete recordhours structure for backup, with file and id annotations
  *
- * @package   mod_demandplanning
+ * @package   mod_recordhours
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class backup_demandplanning_activity_structure_step extends backup_activity_structure_step {
+class backup_recordhours_activity_structure_step extends backup_activity_structure_step {
 
     /**
      * Defines the backup structure of the module
@@ -26,22 +26,22 @@ class backup_demandplanning_activity_structure_step extends backup_activity_stru
         // Get know if we are including userinfo.
         $userinfo = $this->get_setting_value('userinfo');
 
-        // Define the root element describing the demandplanning instance.
-        $demandplanning = new backup_nested_element('demandplanning', array('id'), array(
-            'name', 'intro', 'introformat', 'grade'));
+        // Define the root element describing the recordhours instance.
+        $recordhours = new backup_nested_element('recordhours', array('id'), array(
+                'name', 'intro', 'introformat', 'grade'));
 
         // If we had more elements, we would build the tree here.
 
         // Define data sources.
-        $demandplanning->set_source_table('demandplanning', array('id' => backup::VAR_ACTIVITYID));
+        $recordhours->set_source_table('recordhours', array('id' => backup::VAR_ACTIVITYID));
 
         // If we were referring to other tables, we would annotate the relation
         // with the element's annotate_ids() method.
 
         // Define file annotations (we do not use itemid in this example).
-        $demandplanning->annotate_files('mod_demandplanning', 'intro', null);
+        $recordhours->annotate_files('mod_recordhours', 'intro', null);
 
-        // Return the root element (demandplanning), wrapped into standard activity structure.
-        return $this->prepare_activity_structure($demandplanning);
+        // Return the root element (recordhours), wrapped into standard activity structure.
+        return $this->prepare_activity_structure($recordhours);
     }
 }
