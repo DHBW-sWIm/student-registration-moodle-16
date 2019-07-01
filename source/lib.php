@@ -13,7 +13,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Example constant, you probably want to remove this :-)
  */
-define('demandplanning_ULTIMATE_ANSWER', 42);
+define('sefutestplugin_ULTIMATE_ANSWER', 42);
 
 /* Moodle core API */
 
@@ -25,7 +25,7 @@ define('demandplanning_ULTIMATE_ANSWER', 42);
  * @param string $feature FEATURE_xx constant for requested feature
  * @return mixed true if the feature is supported, null if unknown
  */
-function demandplanning_supports($feature) {
+function sefutestplugin_supports($feature) {
 
     switch ($feature) {
         case FEATURE_MOD_INTRO:
@@ -42,53 +42,53 @@ function demandplanning_supports($feature) {
 }
 
 /**
- * Saves a new instance of the demandplanning into the database
+ * Saves a new instance of the sefutestplugin into the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will create a new instance and return the id number
  * of the new instance.
  *
- * @param stdClass $demandplanning Submitted data from the form in mod_form.php
- * @param mod_demandplanning_mod_form $mform The form instance itself (if needed)
- * @return int The id of the newly inserted demandplanning record
+ * @param stdClass $sefutestplugin Submitted data from the form in mod_form.php
+ * @param mod_sefutestplugin_mod_form $mform The form instance itself (if needed)
+ * @return int The id of the newly inserted sefutestplugin record
  */
-function demandplanning_add_instance(stdClass $demandplanning, mod_demandplanning_mod_form $mform = null) {
+function sefutestplugin_add_instance(stdClass $sefutestplugin, mod_sefutestplugin_mod_form $mform = null) {
     global $DB;
 
-    $demandplanning->timecreated = time();
+    $sefutestplugin->timecreated = time();
 
     // You may have to add extra stuff in here.
 
-    $demandplanning->id = $DB->insert_record('demandplanning', $demandplanning);
+    $sefutestplugin->id = $DB->insert_record('sefutestplugin', $sefutestplugin);
 
-    demandplanning_grade_item_update($demandplanning);
+    sefutestplugin_grade_item_update($sefutestplugin);
 
-    return $demandplanning->id;
+    return $sefutestplugin->id;
 }
 
 /**
- * Updates an instance of the demandplanning in the database
+ * Updates an instance of the sefutestplugin in the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will update an existing instance with new data.
  *
- * @param stdClass $demandplanning An object from the form in mod_form.php
- * @param mod_demandplanning_mod_form $mform The form instance itself (if needed)
+ * @param stdClass $sefutestplugin An object from the form in mod_form.php
+ * @param mod_sefutestplugin_mod_form $mform The form instance itself (if needed)
  * @return boolean Success/Fail
  */
-function demandplanning_update_instance(stdClass $demandplanning, mod_demandplanning_mod_form $mform = null) {
+function sefutestplugin_update_instance(stdClass $sefutestplugin, mod_sefutestplugin_mod_form $mform = null) {
     global $DB;
 
-    $demandplanning->timemodified = time();
-    $demandplanning->id = $demandplanning->instance;
+    $sefutestplugin->timemodified = time();
+    $sefutestplugin->id = $sefutestplugin->instance;
 
     // You may have to add extra stuff in here.
 
-    $result = $DB->update_record('demandplanning', $demandplanning);
+    $result = $DB->update_record('sefutestplugin', $sefutestplugin);
 
-    demandplanning_grade_item_update($demandplanning);
+    sefutestplugin_grade_item_update($sefutestplugin);
 
     return $result;
 }
@@ -96,36 +96,36 @@ function demandplanning_update_instance(stdClass $demandplanning, mod_demandplan
 /**
  * This standard function will check all instances of this module
  * and make sure there are up-to-date events created for each of them.
- * If courseid = 0, then every demandplanning event in the site is checked, else
- * only demandplanning events belonging to the course specified are checked.
+ * If courseid = 0, then every sefutestplugin event in the site is checked, else
+ * only sefutestplugin events belonging to the course specified are checked.
  * This is only required if the module is generating calendar events.
  *
  * @param int $courseid Course ID
  * @return bool
  */
-function demandplanning_refresh_events($courseid = 0) {
+function sefutestplugin_refresh_events($courseid = 0) {
     global $DB;
 
     if ($courseid == 0) {
-        if (!$demandplannings = $DB->get_records('demandplanning')) {
+        if (!$sefutestplugins = $DB->get_records('sefutestplugin')) {
             return true;
         }
     } else {
-        if (!$demandplannings = $DB->get_records('demandplanning', array('course' => $courseid))) {
+        if (!$sefutestplugins = $DB->get_records('sefutestplugin', array('course' => $courseid))) {
             return true;
         }
     }
 
-    foreach ($demandplannings as $demandplanning) {
+    foreach ($sefutestplugins as $sefutestplugin) {
         // Create a function such as the one below to deal with updating calendar events.
-        // demandplanning_update_events($demandplanning);
+        // sefutestplugin_update_events($sefutestplugin);
     }
 
     return true;
 }
 
 /**
- * Removes an instance of the demandplanning from the database
+ * Removes an instance of the sefutestplugin from the database
  *
  * Given an ID of an instance of this module,
  * this function will permanently delete the instance
@@ -134,18 +134,18 @@ function demandplanning_refresh_events($courseid = 0) {
  * @param int $id Id of the module instance
  * @return boolean Success/Failure
  */
-function demandplanning_delete_instance($id) {
+function sefutestplugin_delete_instance($id) {
     global $DB;
 
-    if (!$demandplanning = $DB->get_record('demandplanning', array('id' => $id))) {
+    if (!$sefutestplugin = $DB->get_record('sefutestplugin', array('id' => $id))) {
         return false;
     }
 
     // Delete any dependent records here.
 
-    $DB->delete_records('demandplanning', array('id' => $demandplanning->id));
+    $DB->delete_records('sefutestplugin', array('id' => $sefutestplugin->id));
 
-    demandplanning_grade_item_delete($demandplanning);
+    sefutestplugin_grade_item_delete($sefutestplugin);
 
     return true;
 }
@@ -161,10 +161,10 @@ function demandplanning_delete_instance($id) {
  * @param stdClass $course The course record
  * @param stdClass $user The user record
  * @param cm_info|stdClass $mod The course module info object or record
- * @param stdClass $demandplanning The demandplanning instance record
+ * @param stdClass $sefutestplugin The sefutestplugin instance record
  * @return stdClass|null
  */
-function demandplanning_user_outline($course, $user, $mod, $demandplanning) {
+function sefutestplugin_user_outline($course, $user, $mod, $sefutestplugin) {
 
     $return = new stdClass();
     $return->time = 0;
@@ -181,21 +181,21 @@ function demandplanning_user_outline($course, $user, $mod, $demandplanning) {
  * @param stdClass $course the current course record
  * @param stdClass $user the record of the user we are generating report for
  * @param cm_info $mod course module info
- * @param stdClass $demandplanning the module instance record
+ * @param stdClass $sefutestplugin the module instance record
  */
-function demandplanning_user_complete($course, $user, $mod, $demandplanning) {
+function sefutestplugin_user_complete($course, $user, $mod, $sefutestplugin) {
 }
 
 /**
  * Given a course and a time, this module should find recent activity
- * that has occurred in demandplanning activities and print it out.
+ * that has occurred in sefutestplugin activities and print it out.
  *
  * @param stdClass $course The course record
  * @param bool $viewfullnames Should we display full names
  * @param int $timestart Print activity since this timestamp
  * @return boolean True if anything was printed, otherwise false
  */
-function demandplanning_print_recent_activity($course, $viewfullnames, $timestart) {
+function sefutestplugin_print_recent_activity($course, $viewfullnames, $timestart) {
     return false;
 }
 
@@ -204,7 +204,7 @@ function demandplanning_print_recent_activity($course, $viewfullnames, $timestar
  *
  * This callback function is supposed to populate the passed array with
  * custom activity records. These records are then rendered into HTML via
- * {@link demandplanning_print_recent_mod_activity()}.
+ * {@link sefutestplugin_print_recent_mod_activity()}.
  *
  * Returns void, it adds items into $activities and increases $index.
  *
@@ -216,11 +216,11 @@ function demandplanning_print_recent_activity($course, $viewfullnames, $timestar
  * @param int $userid check for a particular user's activity only, defaults to 0 (all users)
  * @param int $groupid check for a particular group's activity only, defaults to 0 (all groups)
  */
-function demandplanning_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid = 0, $groupid = 0) {
+function sefutestplugin_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid = 0, $groupid = 0) {
 }
 
 /**
- * Prints single activity item prepared by {@link demandplanning_get_recent_mod_activity()}
+ * Prints single activity item prepared by {@link sefutestplugin_get_recent_mod_activity()}
  *
  * @param stdClass $activity activity record with added 'cmid' property
  * @param int $courseid the id of the course we produce the report for
@@ -228,7 +228,7 @@ function demandplanning_get_recent_mod_activity(&$activities, &$index, $timestar
  * @param array $modnames as returned by {@link get_module_types_names()}
  * @param bool $viewfullnames display users' full names
  */
-function demandplanning_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
+function sefutestplugin_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
 }
 
 /**
@@ -241,7 +241,7 @@ function demandplanning_print_recent_mod_activity($activity, $courseid, $detail,
  *
  * @return boolean
  */
-function demandplanning_cron() {
+function sefutestplugin_cron() {
     return true;
 }
 
@@ -253,26 +253,26 @@ function demandplanning_cron() {
  *
  * @return array
  */
-function demandplanning_get_extra_capabilities() {
+function sefutestplugin_get_extra_capabilities() {
     return array();
 }
 
 /* Gradebook API */
 
 /**
- * Is a given scale used by the instance of demandplanning?
+ * Is a given scale used by the instance of sefutestplugin?
  *
- * This function returns if a scale is being used by one demandplanning
+ * This function returns if a scale is being used by one sefutestplugin
  * if it has support for grading and scales.
  *
- * @param int $demandplanningid ID of an instance of this module
+ * @param int $sefutestpluginid ID of an instance of this module
  * @param int $scaleid ID of the scale
- * @return bool true if the scale is used by the given demandplanning instance
+ * @return bool true if the scale is used by the given sefutestplugin instance
  */
-function demandplanning_scale_used($demandplanningid, $scaleid) {
+function sefutestplugin_scale_used($sefutestpluginid, $scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('demandplanning', array('id' => $demandplanningid, 'grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('sefutestplugin', array('id' => $sefutestpluginid, 'grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -280,17 +280,17 @@ function demandplanning_scale_used($demandplanningid, $scaleid) {
 }
 
 /**
- * Checks if scale is being used by any instance of demandplanning.
+ * Checks if scale is being used by any instance of sefutestplugin.
  *
  * This is used to find out if scale used anywhere.
  *
  * @param int $scaleid ID of the scale
- * @return boolean true if the scale is used by any demandplanning instance
+ * @return boolean true if the scale is used by any sefutestplugin instance
  */
-function demandplanning_scale_used_anywhere($scaleid) {
+function sefutestplugin_scale_used_anywhere($scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('demandplanning', array('grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('sefutestplugin', array('grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -298,29 +298,29 @@ function demandplanning_scale_used_anywhere($scaleid) {
 }
 
 /**
- * Creates or updates grade item for the given demandplanning instance
+ * Creates or updates grade item for the given sefutestplugin instance
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $demandplanning instance object with extra cmidnumber and modname property
+ * @param stdClass $sefutestplugin instance object with extra cmidnumber and modname property
  * @param bool $reset reset grades in the gradebook
  * @return void
  */
-function demandplanning_grade_item_update(stdClass $demandplanning, $reset = false) {
+function sefutestplugin_grade_item_update(stdClass $sefutestplugin, $reset = false) {
     global $CFG;
     require_once($CFG->libdir . '/gradelib.php');
 
     $item = array();
-    $item['itemname'] = clean_param($demandplanning->name, PARAM_NOTAGS);
+    $item['itemname'] = clean_param($sefutestplugin->name, PARAM_NOTAGS);
     $item['gradetype'] = GRADE_TYPE_VALUE;
 
-    if ($demandplanning->grade > 0) {
+    if ($sefutestplugin->grade > 0) {
         $item['gradetype'] = GRADE_TYPE_VALUE;
-        $item['grademax'] = $demandplanning->grade;
+        $item['grademax'] = $sefutestplugin->grade;
         $item['grademin'] = 0;
-    } else if ($demandplanning->grade < 0) {
+    } else if ($sefutestplugin->grade < 0) {
         $item['gradetype'] = GRADE_TYPE_SCALE;
-        $item['scaleid'] = -$demandplanning->grade;
+        $item['scaleid'] = -$sefutestplugin->grade;
     } else {
         $item['gradetype'] = GRADE_TYPE_NONE;
     }
@@ -329,40 +329,40 @@ function demandplanning_grade_item_update(stdClass $demandplanning, $reset = fal
         $item['reset'] = true;
     }
 
-    grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning',
-        $demandplanning->id, 0, null, $item);
+    grade_update('mod/sefutestplugin', $sefutestplugin->course, 'mod', 'sefutestplugin',
+        $sefutestplugin->id, 0, null, $item);
 }
 
 /**
- * Delete grade item for given demandplanning instance
+ * Delete grade item for given sefutestplugin instance
  *
- * @param stdClass $demandplanning instance object
+ * @param stdClass $sefutestplugin instance object
  * @return grade_item
  */
-function demandplanning_grade_item_delete($demandplanning) {
+function sefutestplugin_grade_item_delete($sefutestplugin) {
     global $CFG;
     require_once($CFG->libdir . '/gradelib.php');
 
-    return grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning',
-        $demandplanning->id, 0, null, array('deleted' => 1));
+    return grade_update('mod/sefutestplugin', $sefutestplugin->course, 'mod', 'sefutestplugin',
+        $sefutestplugin->id, 0, null, array('deleted' => 1));
 }
 
 /**
- * Update demandplanning grades in the gradebook
+ * Update sefutestplugin grades in the gradebook
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $demandplanning instance object with extra cmidnumber and modname property
+ * @param stdClass $sefutestplugin instance object with extra cmidnumber and modname property
  * @param int $userid update grade of specific user only, 0 means all participants
  */
-function demandplanning_update_grades(stdClass $demandplanning, $userid = 0) {
+function sefutestplugin_update_grades(stdClass $sefutestplugin, $userid = 0) {
     global $CFG, $DB;
     require_once($CFG->libdir . '/gradelib.php');
 
     // Populate array of grade objects indexed by userid.
     $grades = array();
 
-    grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning', $demandplanning->id, 0, $grades);
+    grade_update('mod/sefutestplugin', $sefutestplugin->course, 'mod', 'sefutestplugin', $sefutestplugin->id, 0, $grades);
 }
 
 /* File API */
@@ -378,14 +378,14 @@ function demandplanning_update_grades(stdClass $demandplanning, $userid = 0) {
  * @param stdClass $context
  * @return array of [(string)filearea] => (string)description
  */
-function demandplanning_get_file_areas($course, $cm, $context) {
+function sefutestplugin_get_file_areas($course, $cm, $context) {
     return array();
 }
 
 /**
- * File browsing support for demandplanning file areas
+ * File browsing support for sefutestplugin file areas
  *
- * @package mod_demandplanning
+ * @package mod_sefutestplugin
  * @category files
  *
  * @param file_browser $browser
@@ -399,25 +399,25 @@ function demandplanning_get_file_areas($course, $cm, $context) {
  * @param string $filename
  * @return file_info instance or null if not found
  */
-function demandplanning_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
+function sefutestplugin_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
     return null;
 }
 
 /**
- * Serves the files from the demandplanning file areas
+ * Serves the files from the sefutestplugin file areas
  *
- * @package mod_demandplanning
+ * @package mod_sefutestplugin
  * @category files
  *
  * @param stdClass $course the course object
  * @param stdClass $cm the course module object
- * @param stdClass $context the demandplanning's context
+ * @param stdClass $context the sefutestplugin's context
  * @param string $filearea the name of the file area
  * @param array $args extra arguments (itemid, path)
  * @param bool $forcedownload whether or not force download
  * @param array $options additional options affecting the file serving
  */
-function demandplanning_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload, array $options = array()) {
+function sefutestplugin_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload, array $options = array()) {
     global $DB, $CFG;
 
     if ($context->contextlevel != CONTEXT_MODULE) {
@@ -432,28 +432,28 @@ function demandplanning_pluginfile($course, $cm, $context, $filearea, array $arg
 /* Navigation API */
 
 /**
- * Extends the global navigation tree by adding demandplanning nodes if there is a relevant content
+ * Extends the global navigation tree by adding sefutestplugin nodes if there is a relevant content
  *
  * This can be called by an AJAX request so do not rely on $PAGE as it might not be set up properly.
  *
- * @param navigation_node $navref An object representing the navigation tree node of the demandplanning module instance
+ * @param navigation_node $navref An object representing the navigation tree node of the sefutestplugin module instance
  * @param stdClass $course current course record
- * @param stdClass $module current demandplanning instance record
+ * @param stdClass $module current sefutestplugin instance record
  * @param cm_info $cm course module information
  */
-function demandplanning_extend_navigation(navigation_node $navref, stdClass $course, stdClass $module, cm_info $cm) {
+function sefutestplugin_extend_navigation(navigation_node $navref, stdClass $course, stdClass $module, cm_info $cm) {
     // TODO Delete this function and its docblock, or implement it.
 }
 
 /**
- * Extends the settings navigation with the demandplanning settings
+ * Extends the settings navigation with the sefutestplugin settings
  *
- * This function is called when the context for the page is a demandplanning module. This is not called by AJAX
+ * This function is called when the context for the page is a sefutestplugin module. This is not called by AJAX
  * so it is safe to rely on the $PAGE.
  *
  * @param settings_navigation $settingsnav complete settings navigation tree
- * @param navigation_node $demandplanningnode demandplanning administration node
+ * @param navigation_node $sefutestpluginnode sefutestplugin administration node
  */
-function demandplanning_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $demandplanningnode = null) {
+function sefutestplugin_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $sefutestpluginnode = null) {
     // TODO Delete this function and its docblock, or implement it.
 }

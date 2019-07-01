@@ -27,7 +27,7 @@ if ($mform->is_cancelled()) {
     $SESSION->formdata = $fromform;
 
     $record = new stdClass();
-    $record->company      = $USER->institution;
+    $record->company      = $fromform->company;
     $record->year         = $fromform->year;
     $record->wi_se        = $fromform->wi_se;
     $record->wi_sc        = $fromform->wi_sc;
@@ -37,9 +37,9 @@ if ($mform->is_cancelled()) {
     $record->wi_eh        = $fromform->wi_eh;
     $record->wi_imbit     = $fromform->wi_imbit;
 
-    $lastinsertid = $DB->insert_record('demand', $record, false);
+    $lastinsertid = $DB->insert_record('stats', $record, false);
 
-    $returnurl = new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -54,7 +54,7 @@ if ($mform->is_cancelled()) {
 }
 
 // navigate back to detail view (view_detail.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id)),
+echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id)),
     'To Details', $attributes = null);
 
 // Finish the page.
