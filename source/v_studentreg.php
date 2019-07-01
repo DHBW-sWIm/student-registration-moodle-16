@@ -56,7 +56,7 @@ if ($mform->is_cancelled()) {
     $record->company = $fromform->company;
 
     $lastinsertid = $DB->insert_record($tablename, $record, false);
-    $returnurl = new moodle_url('/mod/studreg/v_studentreg.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id));
     redirect($returnurl);
 
 } else {
