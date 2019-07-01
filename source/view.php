@@ -10,9 +10,9 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-echo $OUTPUT->heading('Start');
+echo $OUTPUT->heading('Record planned Lecture Hours');
 
-echo('Example of using HTTP Request to get Camunda User Object via REST API and print out in table');
+echo('Table showing all planned Lecutre');
 
 $users = get_all_camunda_users();
 //Tabelle mit camunda
@@ -36,21 +36,38 @@ if ($mform->is_cancelled()) {
 } else if ($fromform = $mform->get_data()) {
     //Handle form successful operation, if button is present on form
     $SESSION->formdata = $fromform;
+//Insert Entry Fields
 
-    //======================================================================
-    // GET AND PROCESS FORM DATA
-    //======================================================================
+    $record = new stdClass();
+    $record->company      = $fromform->company;
+    $record->year         = $fromform->lecturer;
+    $record->wi_se        = $fromform->company;
 
-    $variables = [
-            'student_name' => camunda_string($fromform->student_name),
-            'student_matnr' => camunda_string($fromform->student_matnr),
-            'student_reason' => camunda_string($fromform->student_reason),
-            'student_length' => camunda_date_from_form($fromform->student_length)
-    ];
-    // start process with key and data variables (method from locallib.php)
-    start_process('bpx-mvp-process', $variables);
 
-    $SESSION->TESTING->variables = $variables;
+    $lastinsertid = $DB->insert_record('recordhours', $record, false);
+
+    // Create Table with contents of DB - tbd
+
+    $tablename = 'recordedleccturehours';
+    //$records = $DB->get_records_select($tablename,  $params=null);
+    $table_all_records = new html_table();
+    $table_all_records->head = array('Company', 'Lecutrer Name', 'Recorded Hours');
+
+    // bind data to html table
+    foreach ($records as $record) {
+        $company = $record->company;
+        $lecturer = $record->lecturer;
+        $count_hours = $record->count_hours;
+
+
+        $table_all_records->data[] = array($company, $lecturer,  $count_hours );
+    }
+    // print table
+    echo html_writer::table($table_all_records);
+
+
+
+
 
     // redirect user
     $returnurl = new moodle_url('/mod/recordhours/view_end.php', array('id' => $cm->id));

@@ -10,18 +10,17 @@ class start_form extends moodleform
 
         $mform = $this->_form; // Don't forget the underscore!
 
-        $mform->addElement('header', 'header', 'Camunda Example:');
+        $mform->addElement('header', 'header', 'Add new Entry:');
 
-        $mform->addElement('text', 'student_name', 'Enter your name');
-        $mform->setType('student_name', PARAM_NOTAGS);
+        $mform->addElement('text', 'lecturer', 'Enter lecutrer name');
+        $mform->setType('lecturer', PARAM_TEXT);
 
-        $mform->addElement('text', 'student_matnr', 'Enter your matriculation number');
-        $mform->setType('student_matnr', PARAM_NOTAGS);
+        $mform->addElement('text', 'company', 'Enter company name');
+        $mform->setType('company', PARAM_TEXT);
 
-        $mform->addElement('text', 'student_reason', 'Enter your illness reason');
-        $mform->setType('student_reason', PARAM_NOTAGS);
+        $mform->addElement('text', 'count_hours', 'Enter the numbers of hours');
+        $mform->setType('count_hours', PARAM_INT);
 
-        $mform->addElement('date_selector', 'student_length', 'Enter the date until you are sick');
 
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
