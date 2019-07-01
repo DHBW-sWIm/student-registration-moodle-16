@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Define all the restore steps that will be used by the restore_felixmod_activity_task
+ * Define all the restore steps that will be used by the restore_demandplanning_activity_task
  */
 
 /**
- * Structure step to restore one felixmod activity
+ * Structure step to restore one demandplanning activity
  *
- * @package   mod_felixmod
+ * @package   mod_demandplanning
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class restore_felixmod_activity_structure_step extends restore_activity_structure_step {
+class restore_demandplanning_activity_structure_step extends restore_activity_structure_step {
 
     /**
      * Defines structure of path elements to be processed during the restore
@@ -22,7 +22,7 @@ class restore_felixmod_activity_structure_step extends restore_activity_structur
     protected function define_structure() {
 
         $paths = array();
-        $paths[] = new restore_path_element('felixmod', '/activity/felixmod');
+        $paths[] = new restore_path_element('demandplanning', '/activity/demandplanning');
 
         // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
@@ -33,7 +33,7 @@ class restore_felixmod_activity_structure_step extends restore_activity_structur
      *
      * @param array $data parsed element data
      */
-    protected function process_felixmod($data) {
+    protected function process_demandplanning($data) {
         global $DB;
 
         $data = (object) $data;
@@ -53,8 +53,8 @@ class restore_felixmod_activity_structure_step extends restore_activity_structur
             $data->grade = -($this->get_mappingid('scale', abs($data->grade)));
         }
 
-        // Create the felixmod instance.
-        $newitemid = $DB->insert_record('felixmod', $data);
+        // Create the demandplanning instance.
+        $newitemid = $DB->insert_record('demandplanning', $data);
         $this->apply_activity_instance($newitemid);
     }
 
@@ -62,7 +62,7 @@ class restore_felixmod_activity_structure_step extends restore_activity_structur
      * Post-execution actions
      */
     protected function after_execute() {
-        // Add felixmod related files, no need to match by itemname (just internally handled context).
-        $this->add_related_files('mod_felixmod', 'intro', null);
+        // Add demandplanning related files, no need to match by itemname (just internally handled context).
+        $this->add_related_files('mod_demandplanning', 'intro', null);
     }
 }

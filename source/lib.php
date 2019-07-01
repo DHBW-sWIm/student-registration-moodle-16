@@ -13,7 +13,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Example constant, you probably want to remove this :-)
  */
-define('FELIXMOD_ULTIMATE_ANSWER', 42);
+define('demandplanning_ULTIMATE_ANSWER', 42);
 
 /* Moodle core API */
 
@@ -25,7 +25,7 @@ define('FELIXMOD_ULTIMATE_ANSWER', 42);
  * @param string $feature FEATURE_xx constant for requested feature
  * @return mixed true if the feature is supported, null if unknown
  */
-function felixmod_supports($feature) {
+function demandplanning_supports($feature) {
 
     switch ($feature) {
         case FEATURE_MOD_INTRO:
@@ -42,53 +42,53 @@ function felixmod_supports($feature) {
 }
 
 /**
- * Saves a new instance of the felixmod into the database
+ * Saves a new instance of the demandplanning into the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will create a new instance and return the id number
  * of the new instance.
  *
- * @param stdClass $felixmod Submitted data from the form in mod_form.php
- * @param mod_felixmod_mod_form $mform The form instance itself (if needed)
- * @return int The id of the newly inserted felixmod record
+ * @param stdClass $demandplanning Submitted data from the form in mod_form.php
+ * @param mod_demandplanning_mod_form $mform The form instance itself (if needed)
+ * @return int The id of the newly inserted demandplanning record
  */
-function felixmod_add_instance(stdClass $felixmod, mod_felixmod_mod_form $mform = null) {
+function demandplanning_add_instance(stdClass $demandplanning, mod_demandplanning_mod_form $mform = null) {
     global $DB;
 
-    $felixmod->timecreated = time();
+    $demandplanning->timecreated = time();
 
     // You may have to add extra stuff in here.
 
-    $felixmod->id = $DB->insert_record('felixmod', $felixmod);
+    $demandplanning->id = $DB->insert_record('demandplanning', $demandplanning);
 
-    felixmod_grade_item_update($felixmod);
+    demandplanning_grade_item_update($demandplanning);
 
-    return $felixmod->id;
+    return $demandplanning->id;
 }
 
 /**
- * Updates an instance of the felixmod in the database
+ * Updates an instance of the demandplanning in the database
  *
  * Given an object containing all the necessary data,
  * (defined by the form in mod_form.php) this function
  * will update an existing instance with new data.
  *
- * @param stdClass $felixmod An object from the form in mod_form.php
- * @param mod_felixmod_mod_form $mform The form instance itself (if needed)
+ * @param stdClass $demandplanning An object from the form in mod_form.php
+ * @param mod_demandplanning_mod_form $mform The form instance itself (if needed)
  * @return boolean Success/Fail
  */
-function felixmod_update_instance(stdClass $felixmod, mod_felixmod_mod_form $mform = null) {
+function demandplanning_update_instance(stdClass $demandplanning, mod_demandplanning_mod_form $mform = null) {
     global $DB;
 
-    $felixmod->timemodified = time();
-    $felixmod->id = $felixmod->instance;
+    $demandplanning->timemodified = time();
+    $demandplanning->id = $demandplanning->instance;
 
     // You may have to add extra stuff in here.
 
-    $result = $DB->update_record('felixmod', $felixmod);
+    $result = $DB->update_record('demandplanning', $demandplanning);
 
-    felixmod_grade_item_update($felixmod);
+    demandplanning_grade_item_update($demandplanning);
 
     return $result;
 }
@@ -96,36 +96,36 @@ function felixmod_update_instance(stdClass $felixmod, mod_felixmod_mod_form $mfo
 /**
  * This standard function will check all instances of this module
  * and make sure there are up-to-date events created for each of them.
- * If courseid = 0, then every felixmod event in the site is checked, else
- * only felixmod events belonging to the course specified are checked.
+ * If courseid = 0, then every demandplanning event in the site is checked, else
+ * only demandplanning events belonging to the course specified are checked.
  * This is only required if the module is generating calendar events.
  *
  * @param int $courseid Course ID
  * @return bool
  */
-function felixmod_refresh_events($courseid = 0) {
+function demandplanning_refresh_events($courseid = 0) {
     global $DB;
 
     if ($courseid == 0) {
-        if (!$felixmods = $DB->get_records('felixmod')) {
+        if (!$demandplannings = $DB->get_records('demandplanning')) {
             return true;
         }
     } else {
-        if (!$felixmods = $DB->get_records('felixmod', array('course' => $courseid))) {
+        if (!$demandplannings = $DB->get_records('demandplanning', array('course' => $courseid))) {
             return true;
         }
     }
 
-    foreach ($felixmods as $felixmod) {
+    foreach ($demandplannings as $demandplanning) {
         // Create a function such as the one below to deal with updating calendar events.
-        // felixmod_update_events($felixmod);
+        // demandplanning_update_events($demandplanning);
     }
 
     return true;
 }
 
 /**
- * Removes an instance of the felixmod from the database
+ * Removes an instance of the demandplanning from the database
  *
  * Given an ID of an instance of this module,
  * this function will permanently delete the instance
@@ -134,18 +134,18 @@ function felixmod_refresh_events($courseid = 0) {
  * @param int $id Id of the module instance
  * @return boolean Success/Failure
  */
-function felixmod_delete_instance($id) {
+function demandplanning_delete_instance($id) {
     global $DB;
 
-    if (!$felixmod = $DB->get_record('felixmod', array('id' => $id))) {
+    if (!$demandplanning = $DB->get_record('demandplanning', array('id' => $id))) {
         return false;
     }
 
     // Delete any dependent records here.
 
-    $DB->delete_records('felixmod', array('id' => $felixmod->id));
+    $DB->delete_records('demandplanning', array('id' => $demandplanning->id));
 
-    felixmod_grade_item_delete($felixmod);
+    demandplanning_grade_item_delete($demandplanning);
 
     return true;
 }
@@ -161,10 +161,10 @@ function felixmod_delete_instance($id) {
  * @param stdClass $course The course record
  * @param stdClass $user The user record
  * @param cm_info|stdClass $mod The course module info object or record
- * @param stdClass $felixmod The felixmod instance record
+ * @param stdClass $demandplanning The demandplanning instance record
  * @return stdClass|null
  */
-function felixmod_user_outline($course, $user, $mod, $felixmod) {
+function demandplanning_user_outline($course, $user, $mod, $demandplanning) {
 
     $return = new stdClass();
     $return->time = 0;
@@ -181,21 +181,21 @@ function felixmod_user_outline($course, $user, $mod, $felixmod) {
  * @param stdClass $course the current course record
  * @param stdClass $user the record of the user we are generating report for
  * @param cm_info $mod course module info
- * @param stdClass $felixmod the module instance record
+ * @param stdClass $demandplanning the module instance record
  */
-function felixmod_user_complete($course, $user, $mod, $felixmod) {
+function demandplanning_user_complete($course, $user, $mod, $demandplanning) {
 }
 
 /**
  * Given a course and a time, this module should find recent activity
- * that has occurred in felixmod activities and print it out.
+ * that has occurred in demandplanning activities and print it out.
  *
  * @param stdClass $course The course record
  * @param bool $viewfullnames Should we display full names
  * @param int $timestart Print activity since this timestamp
  * @return boolean True if anything was printed, otherwise false
  */
-function felixmod_print_recent_activity($course, $viewfullnames, $timestart) {
+function demandplanning_print_recent_activity($course, $viewfullnames, $timestart) {
     return false;
 }
 
@@ -204,7 +204,7 @@ function felixmod_print_recent_activity($course, $viewfullnames, $timestart) {
  *
  * This callback function is supposed to populate the passed array with
  * custom activity records. These records are then rendered into HTML via
- * {@link felixmod_print_recent_mod_activity()}.
+ * {@link demandplanning_print_recent_mod_activity()}.
  *
  * Returns void, it adds items into $activities and increases $index.
  *
@@ -216,11 +216,11 @@ function felixmod_print_recent_activity($course, $viewfullnames, $timestart) {
  * @param int $userid check for a particular user's activity only, defaults to 0 (all users)
  * @param int $groupid check for a particular group's activity only, defaults to 0 (all groups)
  */
-function felixmod_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid = 0, $groupid = 0) {
+function demandplanning_get_recent_mod_activity(&$activities, &$index, $timestart, $courseid, $cmid, $userid = 0, $groupid = 0) {
 }
 
 /**
- * Prints single activity item prepared by {@link felixmod_get_recent_mod_activity()}
+ * Prints single activity item prepared by {@link demandplanning_get_recent_mod_activity()}
  *
  * @param stdClass $activity activity record with added 'cmid' property
  * @param int $courseid the id of the course we produce the report for
@@ -228,7 +228,7 @@ function felixmod_get_recent_mod_activity(&$activities, &$index, $timestart, $co
  * @param array $modnames as returned by {@link get_module_types_names()}
  * @param bool $viewfullnames display users' full names
  */
-function felixmod_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
+function demandplanning_print_recent_mod_activity($activity, $courseid, $detail, $modnames, $viewfullnames) {
 }
 
 /**
@@ -241,7 +241,7 @@ function felixmod_print_recent_mod_activity($activity, $courseid, $detail, $modn
  *
  * @return boolean
  */
-function felixmod_cron() {
+function demandplanning_cron() {
     return true;
 }
 
@@ -253,26 +253,26 @@ function felixmod_cron() {
  *
  * @return array
  */
-function felixmod_get_extra_capabilities() {
+function demandplanning_get_extra_capabilities() {
     return array();
 }
 
 /* Gradebook API */
 
 /**
- * Is a given scale used by the instance of felixmod?
+ * Is a given scale used by the instance of demandplanning?
  *
- * This function returns if a scale is being used by one felixmod
+ * This function returns if a scale is being used by one demandplanning
  * if it has support for grading and scales.
  *
- * @param int $felixmodid ID of an instance of this module
+ * @param int $demandplanningid ID of an instance of this module
  * @param int $scaleid ID of the scale
- * @return bool true if the scale is used by the given felixmod instance
+ * @return bool true if the scale is used by the given demandplanning instance
  */
-function felixmod_scale_used($felixmodid, $scaleid) {
+function demandplanning_scale_used($demandplanningid, $scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('felixmod', array('id' => $felixmodid, 'grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('demandplanning', array('id' => $demandplanningid, 'grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -280,17 +280,17 @@ function felixmod_scale_used($felixmodid, $scaleid) {
 }
 
 /**
- * Checks if scale is being used by any instance of felixmod.
+ * Checks if scale is being used by any instance of demandplanning.
  *
  * This is used to find out if scale used anywhere.
  *
  * @param int $scaleid ID of the scale
- * @return boolean true if the scale is used by any felixmod instance
+ * @return boolean true if the scale is used by any demandplanning instance
  */
-function felixmod_scale_used_anywhere($scaleid) {
+function demandplanning_scale_used_anywhere($scaleid) {
     global $DB;
 
-    if ($scaleid and $DB->record_exists('felixmod', array('grade' => -$scaleid))) {
+    if ($scaleid and $DB->record_exists('demandplanning', array('grade' => -$scaleid))) {
         return true;
     } else {
         return false;
@@ -298,29 +298,29 @@ function felixmod_scale_used_anywhere($scaleid) {
 }
 
 /**
- * Creates or updates grade item for the given felixmod instance
+ * Creates or updates grade item for the given demandplanning instance
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $felixmod instance object with extra cmidnumber and modname property
+ * @param stdClass $demandplanning instance object with extra cmidnumber and modname property
  * @param bool $reset reset grades in the gradebook
  * @return void
  */
-function felixmod_grade_item_update(stdClass $felixmod, $reset = false) {
+function demandplanning_grade_item_update(stdClass $demandplanning, $reset = false) {
     global $CFG;
     require_once($CFG->libdir . '/gradelib.php');
 
     $item = array();
-    $item['itemname'] = clean_param($felixmod->name, PARAM_NOTAGS);
+    $item['itemname'] = clean_param($demandplanning->name, PARAM_NOTAGS);
     $item['gradetype'] = GRADE_TYPE_VALUE;
 
-    if ($felixmod->grade > 0) {
+    if ($demandplanning->grade > 0) {
         $item['gradetype'] = GRADE_TYPE_VALUE;
-        $item['grademax'] = $felixmod->grade;
+        $item['grademax'] = $demandplanning->grade;
         $item['grademin'] = 0;
-    } else if ($felixmod->grade < 0) {
+    } else if ($demandplanning->grade < 0) {
         $item['gradetype'] = GRADE_TYPE_SCALE;
-        $item['scaleid'] = -$felixmod->grade;
+        $item['scaleid'] = -$demandplanning->grade;
     } else {
         $item['gradetype'] = GRADE_TYPE_NONE;
     }
@@ -329,40 +329,40 @@ function felixmod_grade_item_update(stdClass $felixmod, $reset = false) {
         $item['reset'] = true;
     }
 
-    grade_update('mod/felixmod', $felixmod->course, 'mod', 'felixmod',
-        $felixmod->id, 0, null, $item);
+    grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning',
+        $demandplanning->id, 0, null, $item);
 }
 
 /**
- * Delete grade item for given felixmod instance
+ * Delete grade item for given demandplanning instance
  *
- * @param stdClass $felixmod instance object
+ * @param stdClass $demandplanning instance object
  * @return grade_item
  */
-function felixmod_grade_item_delete($felixmod) {
+function demandplanning_grade_item_delete($demandplanning) {
     global $CFG;
     require_once($CFG->libdir . '/gradelib.php');
 
-    return grade_update('mod/felixmod', $felixmod->course, 'mod', 'felixmod',
-        $felixmod->id, 0, null, array('deleted' => 1));
+    return grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning',
+        $demandplanning->id, 0, null, array('deleted' => 1));
 }
 
 /**
- * Update felixmod grades in the gradebook
+ * Update demandplanning grades in the gradebook
  *
  * Needed by {@link grade_update_mod_grades()}.
  *
- * @param stdClass $felixmod instance object with extra cmidnumber and modname property
+ * @param stdClass $demandplanning instance object with extra cmidnumber and modname property
  * @param int $userid update grade of specific user only, 0 means all participants
  */
-function felixmod_update_grades(stdClass $felixmod, $userid = 0) {
+function demandplanning_update_grades(stdClass $demandplanning, $userid = 0) {
     global $CFG, $DB;
     require_once($CFG->libdir . '/gradelib.php');
 
     // Populate array of grade objects indexed by userid.
     $grades = array();
 
-    grade_update('mod/felixmod', $felixmod->course, 'mod', 'felixmod', $felixmod->id, 0, $grades);
+    grade_update('mod/demandplanning', $demandplanning->course, 'mod', 'demandplanning', $demandplanning->id, 0, $grades);
 }
 
 /* File API */
@@ -378,14 +378,14 @@ function felixmod_update_grades(stdClass $felixmod, $userid = 0) {
  * @param stdClass $context
  * @return array of [(string)filearea] => (string)description
  */
-function felixmod_get_file_areas($course, $cm, $context) {
+function demandplanning_get_file_areas($course, $cm, $context) {
     return array();
 }
 
 /**
- * File browsing support for felixmod file areas
+ * File browsing support for demandplanning file areas
  *
- * @package mod_felixmod
+ * @package mod_demandplanning
  * @category files
  *
  * @param file_browser $browser
@@ -399,25 +399,25 @@ function felixmod_get_file_areas($course, $cm, $context) {
  * @param string $filename
  * @return file_info instance or null if not found
  */
-function felixmod_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
+function demandplanning_get_file_info($browser, $areas, $course, $cm, $context, $filearea, $itemid, $filepath, $filename) {
     return null;
 }
 
 /**
- * Serves the files from the felixmod file areas
+ * Serves the files from the demandplanning file areas
  *
- * @package mod_felixmod
+ * @package mod_demandplanning
  * @category files
  *
  * @param stdClass $course the course object
  * @param stdClass $cm the course module object
- * @param stdClass $context the felixmod's context
+ * @param stdClass $context the demandplanning's context
  * @param string $filearea the name of the file area
  * @param array $args extra arguments (itemid, path)
  * @param bool $forcedownload whether or not force download
  * @param array $options additional options affecting the file serving
  */
-function felixmod_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload, array $options = array()) {
+function demandplanning_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload, array $options = array()) {
     global $DB, $CFG;
 
     if ($context->contextlevel != CONTEXT_MODULE) {
@@ -432,28 +432,28 @@ function felixmod_pluginfile($course, $cm, $context, $filearea, array $args, $fo
 /* Navigation API */
 
 /**
- * Extends the global navigation tree by adding felixmod nodes if there is a relevant content
+ * Extends the global navigation tree by adding demandplanning nodes if there is a relevant content
  *
  * This can be called by an AJAX request so do not rely on $PAGE as it might not be set up properly.
  *
- * @param navigation_node $navref An object representing the navigation tree node of the felixmod module instance
+ * @param navigation_node $navref An object representing the navigation tree node of the demandplanning module instance
  * @param stdClass $course current course record
- * @param stdClass $module current felixmod instance record
+ * @param stdClass $module current demandplanning instance record
  * @param cm_info $cm course module information
  */
-function felixmod_extend_navigation(navigation_node $navref, stdClass $course, stdClass $module, cm_info $cm) {
+function demandplanning_extend_navigation(navigation_node $navref, stdClass $course, stdClass $module, cm_info $cm) {
     // TODO Delete this function and its docblock, or implement it.
 }
 
 /**
- * Extends the settings navigation with the felixmod settings
+ * Extends the settings navigation with the demandplanning settings
  *
- * This function is called when the context for the page is a felixmod module. This is not called by AJAX
+ * This function is called when the context for the page is a demandplanning module. This is not called by AJAX
  * so it is safe to rely on the $PAGE.
  *
  * @param settings_navigation $settingsnav complete settings navigation tree
- * @param navigation_node $felixmodnode felixmod administration node
+ * @param navigation_node $demandplanningnode demandplanning administration node
  */
-function felixmod_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $felixmodnode = null) {
+function demandplanning_extend_settings_navigation(settings_navigation $settingsnav, navigation_node $demandplanningnode = null) {
     // TODO Delete this function and its docblock, or implement it.
 }
