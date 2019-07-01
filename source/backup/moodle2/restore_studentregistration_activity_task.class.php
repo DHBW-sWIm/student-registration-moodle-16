@@ -54,7 +54,7 @@ class restore_studreg_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         $rules = array();
 
-        $rules[] = new restore_decode_rule('studregVIEWBYID', '/mod/studreg/view.php?id=$1', 'course_module');
+        $rules[] = new restore_decode_rule('studregVIEWBYID', '/mod/studreg/v_studentreg.php?id=$1', 'course_module');
         $rules[] = new restore_decode_rule('studregINDEX', '/mod/studreg/index.php?id=$1', 'course');
 
         return $rules;
@@ -70,9 +70,9 @@ class restore_studreg_activity_task extends restore_activity_task {
     static public function define_restore_log_rules() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('studreg', 'add', 'view.php?id={course_module}', '{studreg}');
-        $rules[] = new restore_log_rule('studreg', 'update', 'view.php?id={course_module}', '{studreg}');
-        $rules[] = new restore_log_rule('studreg', 'view', 'view.php?id={course_module}', '{studreg}');
+        $rules[] = new restore_log_rule('studreg', 'add', 'v_studentreg.php?id={course_module}', '{studreg}');
+        $rules[] = new restore_log_rule('studreg', 'update', 'v_studentreg.php?id={course_module}', '{studreg}');
+        $rules[] = new restore_log_rule('studreg', 'view', 'v_studentreg.php?id={course_module}', '{studreg}');
 
         return $rules;
     }

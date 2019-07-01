@@ -28,7 +28,7 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($strname);
 
 if (!$studregs = get_all_instances_in_course('studreg', $course)) {
-    notice(get_string('nonewmodules', 'studreg'), new moodle_url('/course/view.php', array('id' => $course->id)));
+    notice(get_string('nonewmodules', 'studreg'), new moodle_url('/course/v_studentreg.php', array('id' => $course->id)));
 }
 
 $usesections = course_format_uses_sections($course->format);
@@ -63,7 +63,7 @@ foreach ($modinfo->instances['studreg'] as $cm) {
 
     $class = $cm->visible ? null : array('class' => 'dimmed');
 
-    $row[] = html_writer::link(new moodle_url('view.php', array('id' => $cm->id)),
+    $row[] = html_writer::link(new moodle_url('v_studentreg.php', array('id' => $cm->id)),
         $cm->get_formatted_name(), $class);
     $table_inserted_record->data[] = $row;
 }

@@ -29,7 +29,7 @@ $event->trigger();
 
 // Print the page header.
 
-$PAGE->set_url('/mod/studreg/view.php', array('id' => $cm->id));
+$PAGE->set_url('/mod/studreg/v_studentreg.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($studreg->name));
 $PAGE->set_heading(format_string($course->fullname));
 

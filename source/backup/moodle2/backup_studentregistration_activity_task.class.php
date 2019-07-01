@@ -32,7 +32,7 @@ class backup_studreg_activity_task extends backup_activity_task {
     }
 
     /**
-     * Encodes URLs to the index.php and view.php scripts
+     * Encodes URLs to the index.php and v_studentreg.php scripts
      *
      * @param string $content some HTML text that eventually contains URLs to the activity instance scripts
      * @return string the content with the URLs encoded
@@ -47,7 +47,7 @@ class backup_studreg_activity_task extends backup_activity_task {
         $content = preg_replace($search, '$@studregINDEX*$2@$', $content);
 
         // Link to studreg view by moduleid.
-        $search = '/(' . $base . '\/mod\/studreg\/view.php\?id\=)([0-9]+)/';
+        $search = '/(' . $base . '\/mod\/studreg\/v_studentreg.php\?id\=)([0-9]+)/';
         $content = preg_replace($search, '$@studregVIEWBYID*$2@$', $content);
 
         return $content;
