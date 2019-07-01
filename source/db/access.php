@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Capability definitions for the recordhours module
+ * Capability definitions for the sefutestplugin module
  *
  * The capabilities are loaded into the database table when the module is
  * installed or updated. Whenever the capability definitions are updated,
@@ -25,7 +25,7 @@
  *
  * The variable name for the capability definitions array is $capabilities
  *
- * @package    mod_recordhours
+ * @package    mod_sefutestplugin
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -34,32 +34,32 @@ defined('MOODLE_INTERNAL') || die();
 
 // Modify capabilities as needed and remove this comment.
 $capabilities = array(
-        'mod/recordhours:addinstance' => array(
-                'riskbitmask' => RISK_XSS,
-                'captype' => 'write',
-                'contextlevel' => CONTEXT_COURSE,
-                'archetypes' => array(
-                        'editingteacher' => CAP_ALLOW,
-                        'manager' => CAP_ALLOW
-                ),
-                'clonepermissionsfrom' => 'moodle/course:manageactivities'
+    'mod/sefutestplugin:addinstance' => array(
+        'riskbitmask' => RISK_XSS,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => array(
+            'editingteacher' => CAP_ALLOW,
+            'manager' => CAP_ALLOW
         ),
+        'clonepermissionsfrom' => 'moodle/course:manageactivities'
+    ),
 
-        'mod/recordhours:view' => array(
-                'captype' => 'read',
-                'contextlevel' => CONTEXT_MODULE,
-                'archetypes' => array(
-                        'guest' => CAP_ALLOW,
-                        'user' => CAP_ALLOW,
-                )
-        ),
+    'mod/sefutestplugin:view' => array(
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'guest' => CAP_ALLOW,
+            'user' => CAP_ALLOW,
+        )
+    ),
 
-        'mod/recordhours:submit' => array(
-                'riskbitmask' => RISK_SPAM,
-                'captype' => 'write',
-                'contextlevel' => CONTEXT_MODULE,
-                'archetypes' => array(
-                        'student' => CAP_ALLOW
-                )
-        ),
+    'mod/sefutestplugin:submit' => array(
+        'riskbitmask' => RISK_SPAM,
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => array(
+            'student' => CAP_ALLOW
+        )
+    ),
 );

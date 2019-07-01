@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Define all the restore steps that will be used by the restore_recordhours_activity_task
+ * Define all the restore steps that will be used by the restore_sefutestplugin_activity_task
  */
 
 /**
- * Structure step to restore one recordhours activity
+ * Structure step to restore one sefutestplugin activity
  *
- * @package   mod_recordhours
+ * @package   mod_sefutestplugin
  * @category  backup
  * @copyright 2016 Your Name <your@email.address>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class restore_recordhours_activity_structure_step extends restore_activity_structure_step {
+class restore_sefutestplugin_activity_structure_step extends restore_activity_structure_step {
 
     /**
      * Defines structure of path elements to be processed during the restore
@@ -22,7 +22,7 @@ class restore_recordhours_activity_structure_step extends restore_activity_struc
     protected function define_structure() {
 
         $paths = array();
-        $paths[] = new restore_path_element('recordhours', '/activity/recordhours');
+        $paths[] = new restore_path_element('sefutestplugin', '/activity/sefutestplugin');
 
         // Return the paths wrapped into standard activity structure.
         return $this->prepare_activity_structure($paths);
@@ -33,7 +33,7 @@ class restore_recordhours_activity_structure_step extends restore_activity_struc
      *
      * @param array $data parsed element data
      */
-    protected function process_recordhours($data) {
+    protected function process_sefutestplugin($data) {
         global $DB;
 
         $data = (object) $data;
@@ -53,8 +53,8 @@ class restore_recordhours_activity_structure_step extends restore_activity_struc
             $data->grade = -($this->get_mappingid('scale', abs($data->grade)));
         }
 
-        // Create the recordhours instance.
-        $newitemid = $DB->insert_record('recordhours', $data);
+        // Create the sefutestplugin instance.
+        $newitemid = $DB->insert_record('sefutestplugin', $data);
         $this->apply_activity_instance($newitemid);
     }
 
@@ -62,7 +62,7 @@ class restore_recordhours_activity_structure_step extends restore_activity_struc
      * Post-execution actions
      */
     protected function after_execute() {
-        // Add recordhours related files, no need to match by itemname (just internally handled context).
-        $this->add_related_files('mod_recordhours', 'intro', null);
+        // Add sefutestplugin related files, no need to match by itemname (just internally handled context).
+        $this->add_related_files('mod_sefutestplugin', 'intro', null);
     }
 }
