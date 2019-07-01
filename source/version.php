@@ -2,7 +2,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_demandplanning';
+$plugin->component = 'mod_studentregistration';
 $plugin->version = 2019062500;
 $plugin->release = 'v0.0';
 $plugin->requires = 2014051200;

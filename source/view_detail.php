@@ -39,7 +39,7 @@ foreach ($records as $record) {
 echo html_writer::table($table_all_records);
 
 // navigate back to add records form (view.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/demandplanning/view.php', array('id' => $cm->id)),
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view.php', array('id' => $cm->id)),
     'Back', $attributes = null);
 // Finish the page.
 echo $OUTPUT->footer();
