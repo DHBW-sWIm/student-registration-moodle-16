@@ -5,7 +5,7 @@
  *
  * @see uninstall_plugin()
  *
- * @package    mod_recordhours
+ * @package    mod_studentregistration
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -13,6 +13,6 @@
 /**
  * Custom uninstallation procedure
  */
-function xmldb_recordhours_uninstall() {
+function xmldb_studentregistration_uninstall() {
     return true;
 }

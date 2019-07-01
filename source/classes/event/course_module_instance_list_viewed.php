@@ -1,21 +1,21 @@
 <?php
 
 /**
- * The mod_recordhours instance list viewed event.
+ * The mod_studentregistration instance list viewed event.
  *
- * @package    mod_recordhours
+ * @package    mod_studentregistration
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace mod_recordhours\event;
+namespace mod_studentregistration\event;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * The mod_recordhours instance list viewed event class.
+ * The mod_studentregistration instance list viewed event class.
  *
- * @package    mod_recordhours
+ * @package    mod_studentregistration
  * @copyright  2016 Your Name <your@email.address>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
