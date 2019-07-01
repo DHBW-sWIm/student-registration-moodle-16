@@ -15,13 +15,13 @@ echo $OUTPUT->heading('Student Registration Landing Page');
 
     require_once(__DIR__ . '/forms/start_form.php');
 
-    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/dashboard.php', array('id' => $cm->id)),
+    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_dashboard.php', array('id' => $cm->id)),
     'Dashboard', $attributes = null);
 
-    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/demandreg.php', array('id' => $cm->id)),
+    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_demandreg.php', array('id' => $cm->id)),
     'Demand Planning', $attributes = null);
 
-    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/studentreg.php', array('id' => $cm->id)),
+    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id)),
     'Student Registration', $attributes = null);
 
     //echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/lecturehours.php', array('id' => $cm->id)),
