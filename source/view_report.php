@@ -151,7 +151,7 @@ echo $OUTPUT->heading('Difference:');
 echo html_writer::table($table2);
 
 // navigate back to detail view (view_detail.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id)),
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view_detail.php', array('id' => $cm->id)),
     'Back', $attributes = null);
 
 // Finish the page.

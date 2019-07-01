@@ -39,7 +39,7 @@ if ($mform->is_cancelled()) {
 
     $lastinsertid = $DB->insert_record('stats', $record, false);
 
-    $returnurl = new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/view_detail.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -54,7 +54,7 @@ if ($mform->is_cancelled()) {
 }
 
 // navigate back to detail view (view_detail.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id)),
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view_detail.php', array('id' => $cm->id)),
     'To Details', $attributes = null);
 
 // Finish the page.

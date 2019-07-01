@@ -83,7 +83,7 @@ if ($mform->is_cancelled()) {
     //Handle form successful operation, if button is present on form
     $SESSION->report_cfg = $fromform;
 
-    $returnurl = new moodle_url('/mod/sefutestplugin/view_report.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/view_report.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -98,7 +98,7 @@ if ($mform->is_cancelled()) {
 }
 
 // navigate back to add records form (view.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view.php', array('id' => $cm->id)),
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view.php', array('id' => $cm->id)),
     'Back', $attributes = null);
 // Finish the page.
 echo $OUTPUT->footer();
