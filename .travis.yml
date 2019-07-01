@@ -40,4 +40,4 @@ sudo: false
 notifications:
   slack:
     rooms:
-      - dhbw-moodle:AwYGrmNF9sNcQy0k0s5LGE8I#n-studentregistration
+      - dhbw-moodle:AwYGrmNF9sNcQy0k0s5LGE8I#n-studreg
