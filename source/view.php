@@ -6,18 +6,29 @@ require_once(__DIR__ . '/locallib.php');
 
 include(__DIR__ . '/view_init.php');
 
+// @todo Replace the following lines with you own code.
+
 global $SESSION;
 
-echo $OUTPUT->heading('Capacity Planning Prototype');
+echo $OUTPUT->heading('Start');
+
+echo('Example of using HTTP Request to get Camunda User Object via REST API and print out in table');
+
+$users = get_all_camunda_users();
+//Tabelle mit camunda
+$table = new html_table();
+$table->head = array('ID', 'Firstname', 'Name');
+foreach ($users as $user) {
+    $table->data[] = array($user['id'], $user['firstName'], $user['lastName']);
+}
+echo html_writer::table($table);
 
 // Implement form for user
-// view.php gets start_form class which extends moodleform
+require_once(__DIR__ . '/forms/start_form.php');
 
-    require_once(__DIR__ . '/forms/start_form.php');
+$mform = new start_form();
 
-    $mform = new start_form();
-
-    $mform->render();
+$mform->render();
 
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
@@ -26,20 +37,23 @@ if ($mform->is_cancelled()) {
     //Handle form successful operation, if button is present on form
     $SESSION->formdata = $fromform;
 
-    $record = new stdClass();
-    $record->company      = $fromform->company;
-    $record->year         = $fromform->year;
-    $record->wi_se        = $fromform->wi_se;
-    $record->wi_sc        = $fromform->wi_sc;
-    $record->wi_am        = $fromform->wi_am;
-    $record->wi_ds        = $fromform->wi_ds;
-    $record->wi_eg        = $fromform->wi_eg;
-    $record->wi_eh        = $fromform->wi_eh;
-    $record->wi_imbit     = $fromform->wi_imbit;
+    //======================================================================
+    // GET AND PROCESS FORM DATA
+    //======================================================================
 
-    $lastinsertid = $DB->insert_record('stats', $record, false);
+    $variables = [
+            'student_name' => camunda_string($fromform->student_name),
+            'student_matnr' => camunda_string($fromform->student_matnr),
+            'student_reason' => camunda_string($fromform->student_reason),
+            'student_length' => camunda_date_from_form($fromform->student_length)
+    ];
+    // start process with key and data variables (method from locallib.php)
+    start_process('bpx-mvp-process', $variables);
 
-    $returnurl = new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id));
+    $SESSION->TESTING->variables = $variables;
+
+    // redirect user
+    $returnurl = new moodle_url('/mod/recordhours/view_end.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -52,10 +66,6 @@ if ($mform->is_cancelled()) {
     //displays the form
     $mform->display();
 }
-
-// navigate back to detail view (view_detail.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/sefutestplugin/view_detail.php', array('id' => $cm->id)),
-    'To Details', $attributes = null);
 
 // Finish the page.
 echo $OUTPUT->footer();

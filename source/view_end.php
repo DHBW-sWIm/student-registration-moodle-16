@@ -12,7 +12,13 @@ global $SESSION;
 
 echo $OUTPUT->heading('Result');
 
-echo "Saved entries:" . "\n E-Mail: " . $SESSION->formdata->email . "\n Name: " . $SESSION->formdata->name;
+echo '<h2>Sent entries' . '</h2>'
+    .'<p>Student Name: ' . $SESSION->formdata->student_name . '</p>'
+    .'<p>Matriculation Number: ' . $SESSION->formdata->student_matnr . '</p>'
+    .'<p>Reason: ' . $SESSION->formdata->student_reason . '</p>'
+    .'<p>Valid until: ' . $SESSION->formdata->student_length . '</p>'
+    .'<p>Valid until: ' . epoch_to_iso_date($SESSION->formdata->student_length) . '</p>'
+    .'<p>sent variables: ' . json_encode($SESSION->TESTING->variables) . '</p>';
 
 // Implement form for user
 require_once(__DIR__ . '/forms/end_form.php');
@@ -30,7 +36,7 @@ if ($mform->is_cancelled()) {
     //Remove SESSION data for form
     unset($SESSION->formdata);
     // Redirect to the course main page.
-    $returnurl = new moodle_url('/mod/sefutestplugin/view.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/recordhours/view.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
