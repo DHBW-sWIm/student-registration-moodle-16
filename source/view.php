@@ -50,7 +50,7 @@ if ($mform->is_cancelled()) {
     $record = new stdClass();
     $record->firstname = $fromform->firstname;
     $record->surname = $fromform->surname;
-    $record->email = $fromform->email;
+    $record->email = $fromform->emailaddress;
     $record->birthdate = $fromform->birthdate;
     $record->course = $fromform->course;
     $record->company = $fromform->company;

@@ -13,15 +13,15 @@ class start_form extends moodleform {
 
         $mform->addElement('text', 'firstname', 'First name:');
         $mform->setType('firstname', PARAM_TEXT);
-        $mform->addRule('firstname', 'Please enter a First name', 'rule type', 'nonzero','client', false, false);
+        $mform->addRule('firstname', 'Please enter a first name', 'required');
 
         $mform->addElement('text', 'surname', 'Surname:');
         $mform->setType('surname', PARAM_TEXT);
-        $mform->addRule('surname', 'Please enter a Surname', 'rule type', 'nonzero','client', false, false);
+        $mform->addRule('surname', 'Please enter a surname', 'required');
 
-        $mform->addElement('text', 'email', 'Email address:');
-        $mform->setType('email', PARAM_TEXT);
-        $mform->addRule('email', 'Please enter a valid email address', 'rule type', 'email','client', false, false);
+        $mform->addElement('text', 'emailaddress', 'Email address:');
+        $mform->setType('emailaddress', PARAM_TEXT);
+        $mform->addRule('emailaddress', 'Please enter a valid email address', 'email');
 
         $mform->addElement('date_selector', 'birthdate', 'Birth date:', array(
             'startyear' => 1990,
@@ -29,16 +29,16 @@ class start_form extends moodleform {
             'optional'  => false
         ));
         $mform->setType('birthdate', PARAM_TEXT);
-        $mform->addRule('email', 'Please enter a valid birthdate', 'rule type', 'nonzero','client', false, false);
+        $mform->addRule('birthdate', 'Please enter a valid birthdate', 'rule type', 'nonzero','client', false, false);
 
         $mform->addElement('text', 'course', 'Course:');
         $mform->setType('course', PARAM_TEXT);
-        $mform->addRule('course', 'Please enter a course', 'rule type', 'nonzero','client', false, false);
+        $mform->addRule('course', 'Please enter a course', 'required');
 
 
         $mform->addElement('text', 'company', 'Company:');
         $mform->setType('company', PARAM_TEXT);
-        $mform->addRule('company', 'Please enter a company', 'rule type', 'nonzero','client', false, false);
+        $mform->addRule('company', 'Please enter a company', 'required');
 
 
         $mform->addElement('submit', 'btnSubmit', 'Submit');
