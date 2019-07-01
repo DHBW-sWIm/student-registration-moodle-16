@@ -20,7 +20,7 @@ $mform = new fstudentreg();
 $mform->render();
 
 
-$tablename = 'students';
+$tablename = 'studentregistration_students';
 $records = $DB->get_records_select($tablename,  $params=null);
 $table_all_records = new html_table();
 $table_all_records->head = array('First Name', 'Surname', 'Email Address', 'Date of Birth', 'Course', 'Company');
@@ -55,7 +55,7 @@ if ($mform->is_cancelled()) {
     $record->course = $fromform->course;
     $record->company = $fromform->company;
 
-    $lastinsertid = $DB->insert_record('students', $record, false);
+    $lastinsertid = $DB->insert_record($tablename, $record, false);
     $returnurl = new moodle_url('/mod/studreg/v_studentreg.php', array('id' => $cm->id));
     redirect($returnurl);
 
