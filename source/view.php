@@ -6,40 +6,60 @@ require_once(__DIR__ . '/locallib.php');
 
 include(__DIR__ . '/view_init.php');
 
+// @todo Replace the following lines with you own code.
+
 global $SESSION;
 
-echo $OUTPUT->heading('Capacity Planning Prototype');
+echo $OUTPUT->heading('Studenten-Registrierungen nach Monaten');
 
 // Implement form for user
-// view.php gets start_form class which extends moodleform
+require_once(__DIR__ . '/forms/start_form.php');
 
-    require_once(__DIR__ . '/forms/start_form.php');
+//Tabelle
 
-    $mform = new start_form();
+//Datensatz zuweisen$table = new html_table();
+//$table->head = array('ID', 'Name', 'Email');
 
-    $mform->render();
+//$id = $SESSION->formdata->id;
+//$name = $SESSION->formdata->name;
+//$email = $SESSION->formdata->email;
+
+//Daten zuweisen an HTML-Tabelle
+//$table->data[] = array($id, $name, $email);
+
+//Tabelle ausgeben
+//echo html_writer::table($table);
+
+//Form
+//$mform = new start_form();
+//$mform->render();
+
+
+
+
+
+
+$chart = new \core\chart_bar();
+$past = new \core\chart_series('Jahr 2018', [12, 14, 18, 32, 40, 47, 178, 245, 380, 420, 430, 442 ]);
+$actual = new \core\chart_series('Jahr 2019', [0,0,0,0,0, 38, 182, 237, 390, 410, 442,0]);
+$chart->add_series($past);
+$chart->add_series($actual);
+$chart->set_labels([date('F', strtotime('-11 month')), date('F', strtotime('-10 month')), date('F', strtotime('-9 month')), date('F', strtotime('-8 month')), date('F', strtotime('-7 month')), date('F', strtotime('-6 month')), date('F', strtotime('-5 month')), date('F', strtotime('-4 month')), date('F', strtotime('-3 month')), date('F', strtotime('-2 month')), date('F', strtotime('-1 month')), date("F") ]);
+echo $OUTPUT->render($chart);
 
 //Form processing and displaying is done here
 if ($mform->is_cancelled()) {
+    //Remove SESSION data for form
+    unset($SESSION->formdata);
+    // Redirect to the course main page.
+    $returnurl = new moodle_url('/mod/felixmod/view.php', array('id' => $cm->id));
+    redirect($returnurl);
+
     //Handle form cancel operation, if cancel button is present on form
 } else if ($fromform = $mform->get_data()) {
     //Handle form successful operation, if button is present on form
-    $SESSION->formdata = $fromform;
-
-    $record = new stdClass();
-    $record->company      = $USER->institution;
-    $record->year         = $fromform->year;
-    $record->wi_se        = $fromform->wi_se;
-    $record->wi_sc        = $fromform->wi_sc;
-    $record->wi_am        = $fromform->wi_am;
-    $record->wi_ds        = $fromform->wi_ds;
-    $record->wi_eg        = $fromform->wi_eg;
-    $record->wi_eh        = $fromform->wi_eh;
-    $record->wi_imbit     = $fromform->wi_imbit;
-
-    $lastinsertid = $DB->insert_record('demand', $record, false);
-
-    $returnurl = new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id));
+    // Redirect to the course result page.
+    $returnurl = new moodle_url('/mod/felixmod/view_end.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
@@ -52,10 +72,6 @@ if ($mform->is_cancelled()) {
     //displays the form
     $mform->display();
 }
-
-// navigate back to detail view (view_detail.php)
-echo $OUTPUT->single_button(new moodle_url('/mod/demandplanning/view_detail.php', array('id' => $cm->id)),
-    'To Details', $attributes = null);
 
 // Finish the page.
 echo $OUTPUT->footer();
