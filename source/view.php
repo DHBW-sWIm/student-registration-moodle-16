@@ -70,7 +70,7 @@ if ($mform->is_cancelled()) {
 
 
     // redirect user
-    $returnurl = new moodle_url('/mod/recordhours/view_end.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/view_end.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed
