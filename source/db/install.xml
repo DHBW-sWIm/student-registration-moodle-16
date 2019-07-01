@@ -18,7 +18,7 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="studentregistration_stats" COMMENT="Table for Statistics and Capacity Planning">
+        <TABLE NAME="studentregistration_demand" COMMENT="Table for Statistics and Capacity Planning">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="year" TYPE="int" LENGTH="4" NOTNULL="true" SEQUENCE="false"/>
