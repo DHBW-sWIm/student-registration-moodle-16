@@ -4,7 +4,7 @@
  * Provides code to be executed during the module installation
  *
  * This file replaces the legacy STATEMENTS section in db/install.xml,
- * lib.php/modulename_install() post installation hook and partially defaults.php.
+ * v_LectureHours_lib.php/modulename_install() post installation hook and partially defaults.php.
  *
  * @package    mod_studentregistration
  * @copyright  2016 Your Name <your@email.address>

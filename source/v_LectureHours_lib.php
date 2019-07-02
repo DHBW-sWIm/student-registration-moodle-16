@@ -5,7 +5,7 @@
  * integrated in Moodle should be placed here.
  *
  * All the  specific functions, needed to implement all the module
- * logic, should go to locallib.php.
+ * logic, should go to v_LectureHours_locallib.php.
  */
 
 defined('MOODLE_INTERNAL') || die();
@@ -45,11 +45,11 @@ function studentregistration_supports($feature) {
  * Saves a new instance of the studentregistration into the database
  *
  * Given an object containing all the necessary data,
- * (defined by the form in mod_form.php) this function
+ * (defined by the form in v_LectureHours_mod_form.php) this function
  * will create a new instance and return the id number
  * of the new instance.
  *
- * @param stdClass $studentregistration Submitted data from the form in mod_form.php
+ * @param stdClass $studentregistration Submitted data from the form in v_LectureHours_mod_form.php
  * @param mod_studentregistration_mod_form $mform The form instance itself (if needed)
  * @return int The id of the newly inserted studentregistration record
  */
@@ -71,10 +71,10 @@ function studentregistration_add_instance(stdClass $studentregistration, mod_stu
  * Updates an instance of the studentregistration in the database
  *
  * Given an object containing all the necessary data,
- * (defined by the form in mod_form.php) this function
+ * (defined by the form in v_LectureHours_mod_form.php) this function
  * will update an existing instance with new data.
  *
- * @param stdClass $studentregistration An object from the form in mod_form.php
+ * @param stdClass $studentregistration An object from the form in v_LectureHours_mod_form.php
  * @param mod_studentregistration_mod_form $mform The form instance itself (if needed)
  * @return boolean Success/Fail
  */

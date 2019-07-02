@@ -1,10 +1,10 @@
 <?php
 
 require_once(dirname(dirname(__DIR__)) . '/config.php');
-require_once(__DIR__ . '/lib.php');
-require_once(__DIR__ . '/locallib.php');
+require_once(__DIR__ . '/v_LectureHours_lib.php');
+require_once(__DIR__ . '/v_LectureHours_locallib.php');
 
-include(__DIR__ . '/view_init.php');
+include(__DIR__ . '/v_LectureHours_init.php');
 
 // @todo Replace the following lines with you own code.
 
@@ -21,9 +21,9 @@ echo '<h2>Sent entries' . '</h2>'
     .'<p>sent variables: ' . json_encode($SESSION->TESTING->variables) . '</p>';
 
 // Implement form for user
-require_once(__DIR__ . '/forms/end_form.php');
+require_once(__DIR__ . '/forms/f_LectureHours_end_form.php');
 
-$mform = new end_form();
+$mform = new fLectureHoursEnd_form();
 
 $mform->render();
 
@@ -36,7 +36,7 @@ if ($mform->is_cancelled()) {
     //Remove SESSION data for form
     unset($SESSION->formdata);
     // Redirect to the course main page.
-    $returnurl = new moodle_url('/mod/studentregistration/view.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/v_LectureHours.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed

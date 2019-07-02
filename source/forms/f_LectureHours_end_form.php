@@ -1,7 +1,7 @@
 <?php
 require_once("$CFG->libdir/formslib.php");
 
-class end_form extends moodleform
+class fLectureHoursEnd_form extends moodleform
 {
     //Add elements to form
     public function definition()

@@ -54,8 +54,8 @@ class restore_studentregistration_activity_task extends restore_activity_task {
     static public function define_decode_rules() {
         $rules = array();
 
-        $rules[] = new restore_decode_rule('studentregistrationVIEWBYID', '/mod/studentregistration/view.php?id=$1', 'course_module');
-        $rules[] = new restore_decode_rule('studentregistrationINDEX', '/mod/studentregistration/index.php?id=$1', 'course');
+        $rules[] = new restore_decode_rule('studentregistrationVIEWBYID', '/mod/studentregistration/v_LectureHours.php?id=$1', 'course_module');
+        $rules[] = new restore_decode_rule('studentregistrationINDEX', '/mod/studentregistration/v_LectureHours_index.php?id=$1', 'course');
 
         return $rules;
 
@@ -70,9 +70,9 @@ class restore_studentregistration_activity_task extends restore_activity_task {
     static public function define_restore_log_rules() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('studentregistration', 'add', 'view.php?id={course_module}', '{studentregistration}');
-        $rules[] = new restore_log_rule('studentregistration', 'update', 'view.php?id={course_module}', '{studentregistration}');
-        $rules[] = new restore_log_rule('studentregistration', 'view', 'view.php?id={course_module}', '{studentregistration}');
+        $rules[] = new restore_log_rule('studentregistration', 'add', 'v_LectureHours.php?id={course_module}', '{studentregistration}');
+        $rules[] = new restore_log_rule('studentregistration', 'update', 'v_LectureHours.php?id={course_module}', '{studentregistration}');
+        $rules[] = new restore_log_rule('studentregistration', 'view', 'v_LectureHours.php?id={course_module}', '{studentregistration}');
 
         return $rules;
     }
@@ -90,7 +90,7 @@ class restore_studentregistration_activity_task extends restore_activity_task {
     static public function define_restore_log_rules_for_course() {
         $rules = array();
 
-        $rules[] = new restore_log_rule('studentregistration', 'view all', 'index.php?id={course}', null);
+        $rules[] = new restore_log_rule('studentregistration', 'view all', 'v_LectureHours_index.php?id={course}', null);
 
         return $rules;
     }

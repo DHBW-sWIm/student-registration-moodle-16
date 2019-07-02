@@ -1,10 +1,10 @@
 <?php
 
 require_once(dirname(dirname(__DIR__)) . '/config.php');
-require_once(__DIR__ . '/lib.php');
-require_once(__DIR__ . '/locallib.php');
+require_once(__DIR__ . '/v_LectureHours_lib.php');
+require_once(__DIR__ . '/v_LectureHours_locallib.php');
 
-include(__DIR__ . '/view_init.php');
+include(__DIR__ . '/v_LectureHours_init.php');
 
 // @todo Replace the following lines with you own code.
 
@@ -24,9 +24,9 @@ foreach ($users as $user) {
 echo html_writer::table($table);
 
 // Implement form for user
-require_once(__DIR__ . '/forms/start_form.php');
+require_once(__DIR__ . '/forms/f_LectureHours_start_form.php');
 
-$mform = new start_form();
+$mform = new fLectureHoursStart_form();
 
 $mform->render();
 
@@ -70,7 +70,7 @@ if ($mform->is_cancelled()) {
 
 
     // redirect user
-    $returnurl = new moodle_url('/mod/studentregistration/view_end.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/v_LectureHours_end.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
     // this branch is executed if the form is submitted but the data doesn't validate and the form should be redisplayed

@@ -5,7 +5,7 @@
  * integrated in Moodle should be placed here.
  *
  * All the  specific functions, needed to implement all the module
- * logic, should go to locallib.php.
+ * logic, should go to v_LectureHours_locallib.php.
  */
 
 require_once(__DIR__ . '/lib/autoload.php');

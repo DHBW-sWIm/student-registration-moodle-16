@@ -2,7 +2,7 @@
 
 require __DIR__ . '/vendor/autoload.php';
 require_once(dirname(dirname(__DIR__)) . '/config.php');
-require_once(__DIR__ . '/lib.php');
+require_once(__DIR__ . '/v_LectureHours_lib.php');
 
 $id = required_param('id', PARAM_INT); // Course.
 
@@ -18,7 +18,7 @@ $event->add_record_snapshot('course', $course);
 $event->trigger();
 
 $strname = get_string('modulenameplural', 'mod_studentregistration');
-$PAGE->set_url('/mod/studentregistration/index.php', array('id' => $id));
+$PAGE->set_url('/mod/studentregistration/v_LectureHours_index.php', array('id' => $id));
 $PAGE->navbar->add($strname);
 $PAGE->set_title("$course->shortname: $strname");
 $PAGE->set_heading($course->fullname);
@@ -28,7 +28,7 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading($strname);
 
 if (!$studentregistrations = get_all_instances_in_course('studentregistration', $course)) {
-    notice(get_string('nonewmodules', 'studentregistration'), new moodle_url('/course/view.php', array('id' => $course->id)));
+    notice(get_string('nonewmodules', 'studentregistration'), new moodle_url('/course/v_LectureHours.php', array('id' => $course->id)));
 }
 
 $usesections = course_format_uses_sections($course->format);
@@ -63,7 +63,7 @@ foreach ($modinfo->instances['studentregistration'] as $cm) {
 
     $class = $cm->visible ? null : array('class' => 'dimmed');
 
-    $row[] = html_writer::link(new moodle_url('view.php', array('id' => $cm->id)),
+    $row[] = html_writer::link(new moodle_url('v_LectureHours.php', array('id' => $cm->id)),
             $cm->get_formatted_name(), $class);
     $table->data[] = $row;
 }
