@@ -24,8 +24,8 @@ echo $OUTPUT->heading('Student Registration Landing Page');
     echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id)),
     'Student Registration', $attributes = null);
 
-    //echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/lecturehours.php', array('id' => $cm->id)),
-    //'Lecture Hours', $attributes = null);
+    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_lecturehours.php', array('id' => $cm->id)),
+    'Lecture Hours', $attributes = null);
 
     $mform = new start_form();
 
