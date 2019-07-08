@@ -20,7 +20,7 @@ $mform = new fstudentreg();
 $mform->render();
 
 
-$tablename = 'studentregistration_students';
+$tablename = 'studentregistration_coursereg';
 $records = $DB->get_records_select($tablename,  $params=null);
 $table_all_records = new html_table();
 $table_all_records->head = array('Course acronym', 'No. of students', 'Study program', 'Program director', 'Specialisation', 'Year group', 'Semester start');

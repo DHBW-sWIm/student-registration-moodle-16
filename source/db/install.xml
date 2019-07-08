@@ -1,6 +1,6 @@
 <XMLDB xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" PATH="mod/studentregistration/db" VERSION="20190203" COMMENT="XMLDB file for Moodle mod/studentregistration" xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
     <TABLES>
-        <TABLE NAME="studentregistration" COMMENT="Default comment for studentregistration, please edit me">
+        <TABLE NAME="coursereg" COMMENT="Default comment for studentregistration, please edit me">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="Course studentregistration activity belongs to"/>
@@ -18,7 +18,7 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="studentregistration_course" COMMENT="Table for Statistics and Capacity Planning">
+        <TABLE NAME="studentregistration_course" COMMENT="Table for Course Registration">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
                 <FIELD NAME="courseacronym" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
