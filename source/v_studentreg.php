@@ -13,7 +13,7 @@ echo $OUTPUT->heading('Student Registration Prototype');
 // Implement form for user
 // v_studentreg.php gets fstudentreg class which extends moodleform
 
-require_once(__DIR__ . '/forms/f_studentreg.php');
+require_once(__DIR__ . '/forms/f_coursereg.php');
 
 $mform = new fstudentreg();
 
