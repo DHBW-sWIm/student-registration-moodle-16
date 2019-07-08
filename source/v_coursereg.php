@@ -11,9 +11,9 @@ global $SESSION;
 echo $OUTPUT->heading('Student Registration Prototype');
 
 // Implement form for user
-// v_studentreg.php gets fstudentreg class which extends moodleform
+// v_coursereg.php gets fstudentreg class which extends moodleform
 
-require_once(__DIR__ . '/forms/f_studentreg.php');
+require_once(__DIR__ . '/forms/f_coursereg.php');
 
 $mform = new fstudentreg();
 
@@ -23,17 +23,18 @@ $mform->render();
 $tablename = 'studentregistration_students';
 $records = $DB->get_records_select($tablename,  $params=null);
 $table_all_records = new html_table();
-$table_all_records->head = array('First Name', 'Surname', 'Email Address', 'Date of Birth', 'Course', 'Company');
+$table_all_records->head = array('Course acronym', 'No. of students', 'Study program', 'Program director', 'Specialisation', 'Year group', 'Semester start');
 
 // bind data to html table
 foreach ($records as $record) {
-    $firstname = $record->firstname;
-    $surname = $record->surname;
-    $email = $record->email;
-    $birthdate = gmdate("d-m-Y", $record->birthdate);
-    $course = $record->course;
-    $company = $record->company;
-    $table_all_records->data[] = array($firstname, $surname, $email, $birthdate, $course, $company);
+    $courseacronym = $record->courseacronym;
+    $noofstudents = $record->noofstudents;
+    $studyprogram = $record->studyprogram;
+    $programdirector = $record->programdirector;
+    $specialisation = $record->specialisation;
+    $yeargroup = $record->yeargroup;
+    $semesterstart = $record->semesterstart;
+    $table_all_records->data[] = array($courseacronym, $noofstudents, $studyprogram, $programdirector, $specialisation, $yeargroup, $semesterstart);
 }
 
 // print table
@@ -48,15 +49,16 @@ if ($mform->is_cancelled()) {
     $SESSION->formdata = $fromform;
 
     $record = new stdClass();
-    $record->firstname = $fromform->firstname;
-    $record->surname = $fromform->surname;
-    $record->email = $fromform->emailaddress;
-    $record->birthdate = $fromform->birthdate;
-    $record->course = $fromform->course;
-    $record->company = $fromform->company;
+    $record->courseacronym = $fromform->courseacronym;
+    $record->noofstudents = $fromform->noofstudents;
+    $record->studyprogram = $fromform->studyprogram;
+    $record->programdirector = $fromform->programdirector;
+    $record->specialisation = $fromform->specialisation;
+    $record->yeargroup = $fromform->yeargroup;
+    $record->semesterstart = $fromform->semesterstart;
 
     $lastinsertid = $DB->insert_record($tablename, $record, false);
-    $returnurl = new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id));
+    $returnurl = new moodle_url('/mod/studentregistration/v_coursereg.php', array('id' => $cm->id));
     redirect($returnurl);
 
 } else {

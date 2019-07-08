@@ -18,44 +18,17 @@
                 <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
             </INDEXES>
         </TABLE>
-        <TABLE NAME="studentregistration_demand" COMMENT="Table for Statistics and Capacity Planning">
+        <TABLE NAME="studentregistration_course" COMMENT="Table for Statistics and Capacity Planning">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="year" TYPE="int" LENGTH="4" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="company" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="wi_se" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_sc" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_am" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_ds" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_eg" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_eh" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-                <FIELD NAME="wi_imbit" TYPE="int" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-            </KEYS>
-        </TABLE>
-        <TABLE NAME="studentregistration_students" COMMENT="Table for Student Registration">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="firstname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="surname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="email" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="birthdate" TYPE="char" LENGTH="11" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="course" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="company" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-            </KEYS>
-        </TABLE>
-        <TABLE NAME="studentregistration_hours" COMMENT="Table for Lecture Hours">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="firstname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="surname" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="company" TYPE="char" LENGTH="25" NOTNULL="true" SEQUENCE="false"/>
-                <FIELD NAME="hours" TYPE="int" LENGTH="3" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="courseacronym" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="noofstudents" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="studyprogram" TYPE="char" LENGTH="8" NOTNULL="true" SEQUENCE="false"/>
+                <FIELD NAME="programdirector" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="specialisation" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="yeargroup" TYPE="char" LENGTH="3" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="secretary" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
+                <FIELD NAME="semesterstart" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false"/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
