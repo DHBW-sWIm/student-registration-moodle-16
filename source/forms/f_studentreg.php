@@ -21,7 +21,7 @@ class fstudentreg extends moodleform {
 
         $mform->addElement('text', 'emailaddress', 'Email address:');
         $mform->setType('emailaddress', PARAM_TEXT);
-        $mform->addRule('emailaddress', 'Please enter a valid email address', 'email');
+        $mform->addRule('emailaddress', 'Please enter a valid email address', 'email', 'required');
 
         $mform->addElement('date_selector', 'birthdate', 'Birth date:', array(
             'startyear' => 1990,
