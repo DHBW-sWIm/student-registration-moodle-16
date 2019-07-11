@@ -84,10 +84,6 @@ if ($mform->is_cancelled()) {
     $record->secretary = $fromform->secretary;
 
 
-    echo ("<textarea>");
-    print_r($record);
-    echo ("</textarea>");
-
     $lastinsertid = $DB->insert_record($tablename, $record, false);
     $returnurl = new moodle_url('/mod/studentregistration/v_coursereg.php', array('id' => $cm->id));
     redirect($returnurl);
