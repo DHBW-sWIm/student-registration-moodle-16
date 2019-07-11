@@ -30,12 +30,37 @@ $table_all_records->head = array('Course acronym', 'No. of students', 'Specialis
 foreach ($records as $record) {
     $courseacronym = $record->courseacronym;
     $noofstudents = $record->noofstudents;
-    $specialisation = $record->specialisation;     // ==0?'AM':'DS':'EG':'EH':'IMBIT':'SC':'SE';
+    switch ($record->specialisation) {
+        case 0:
+            $specialisation = 'AM';
+            break;
+        case 1:
+            $specialisation = 'DS';
+            break;
+        case 2:
+            $specialisation = 'EG';
+            break;
+        case 3:
+            $specialisation = 'EH';
+            break;
+        case 4:
+            $specialisation = 'IMBIT';
+            break;
+        case 5:
+            $specialisation = 'SC';
+            break;
+        case 6:
+            $specialisation = 'SE';
+            break;
+    }
     $yeargroup = $record->yeargroup;
     $semesterstart = $record->semesterstart==0?'Summer':'Winter';
     $programdirector = $record->programdirector;
     $secretary = $record->secretary;
     $table_all_records->data[] = array($courseacronym, $noofstudents, $specialisation, $yeargroup, $semesterstart, $programdirector, $secretary);
+
+
+
 }
 
 // print table
