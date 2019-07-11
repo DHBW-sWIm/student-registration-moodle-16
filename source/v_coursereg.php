@@ -23,20 +23,19 @@ $mform->render();
 $tablename = 'studentregistration_course';
 $records = $DB->get_records_select($tablename,  $params=null);
 $table_all_records = new html_table();
-$table_all_records->head = array('Course acronym', 'No. of students', 'Study program', 'Program director', 'Specialisation', 'Year group', 'Secretary', 'Semester start');
+$table_all_records->head = array('Course acronym', 'No. of students', 'Specialisation', 'Year group', 'Semester start', 'Program director', 'Secretary');
 
 
 // bind data to html table
 foreach ($records as $record) {
     $courseacronym = $record->courseacronym;
     $noofstudents = $record->noofstudents;
-    $studyprogram = $record->studyprogram;
-    $programdirector = $record->programdirector;
-    $specialisation = $record->specialisation;
+    $specialisation = $record->specialisation;     // ==0?'AM':'DS':'EG':'EH':'IMBIT':'SC':'SE';
     $yeargroup = $record->yeargroup;
-    $secretary = $record->secretary;
     $semesterstart = $record->semesterstart==0?'Summer':'Winter';
-    $table_all_records->data[] = array($courseacronym, $noofstudents, $studyprogram, $programdirector, $specialisation, $yeargroup, $secretary, $semesterstart);
+    $programdirector = $record->programdirector;
+    $secretary = $record->secretary;
+    $table_all_records->data[] = array($courseacronym, $noofstudents, $specialisation, $yeargroup, $semesterstart, $programdirector, $secretary);
 }
 
 // print table
@@ -53,12 +52,12 @@ if ($mform->is_cancelled()) {
     $record = new stdClass();
     $record->courseacronym = $fromform->courseacronym;
     $record->noofstudents = $fromform->noofstudents;
-    $record->studyprogram = $fromform->studyprogram;
-    $record->programdirector = $fromform->programdirector;
     $record->specialisation = $fromform->specialisation;
     $record->yeargroup = $fromform->yeargroup;
-    $record->secretary = $fromform->secretary;
     $record->semesterstart = $fromform->semesterstart;
+    $record->programdirector = $fromform->programdirector;
+    $record->secretary = $fromform->secretary;
+
 
     echo ("<textarea>");
     print_r($record);
