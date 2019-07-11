@@ -10,7 +10,7 @@ class fcoursereg extends moodleform {
 
         $mform->addElement('header', 'header', 'Create a new course:');
 
-        $mform->addElement('text', 'courseacronym', 'Course acronym');
+        $mform->addElement('text', 'courseacronym', 'Course acronym:');
         $mform->setType('courseacronym', PARAM_TEXT);
         $mform->addRule('courseacronym', 'Please enter a course acronym', 'required');
 
@@ -18,17 +18,13 @@ class fcoursereg extends moodleform {
         $mform->setType('noofstudents', PARAM_INT);
         $mform->addRule('noofstudents', 'Please enter a valid number of students', 'required');
 
-        $mform->addElement('text', 'studyprogram', 'Study program:');
-        $mform->setType('studyprogram', PARAM_TEXT);
-        $mform->addRule('studyprogram', 'Please enter a valid study program', 'required');
-
         $mform->addElement('text', 'programdirector', 'Program director:');
         $mform->setType('programdirector', PARAM_TEXT);
         $mform->addRule('programdirector', 'Please enter a program director', 'required');
 
-        $mform->addElement('text', 'specialisation', 'Specialisation:');
+        $mform->addElement('select', 'specialisation', 'Specialisation:', array("AM", "DS", "EG", "EH", "IMBIT", "SC", "SE"), true);   //
         $mform->setType('specialisation', PARAM_TEXT);
-        $mform->addRule('specialisation', 'Please enter a specialisation', 'required');
+        $mform->addRule('specialisation', 'Please select a specialisation', 'required');
 
         $mform->addElement('text', 'yeargroup', 'Year group:');
         $mform->setType('yeargroup', PARAM_TEXT);

@@ -12,17 +12,26 @@ class flecturehours extends moodleform
 
         $mform->addElement('header', 'header', 'Add new Entry:');
 
-        $mform->addElement('text', 'fname', 'First Name');
+        $mform->addElement('text', 'fname', 'First name:');
         $mform->setType('fname', PARAM_TEXT);
+        $mform->addRule('firstname', 'Please enter a first name', 'required');
 
-        $mform->addElement('text', 'lname', 'Last Name');
-        $mform->setType('lname', PARAM_TEXT);
+        $mform->addElement('text', 'surname', 'Surname:');
+        $mform->setType('surname', PARAM_TEXT);
+        $mform->addRule('surname', 'Please enter a surname', 'required');
 
-        $mform->addElement('text', 'company', 'Company');
+        $mform->addElement('text', 'company', 'Company:');
         $mform->setType('company', PARAM_TEXT);
+        $mform->addRule('company', 'Please enter a company', 'required');
 
-        $mform->addElement('text', 'hours', 'Enter the numbers of hours');
+        $mform->addElement('text', 'hours', 'No. of lecture hours:');
         $mform->setType('hours', PARAM_INT);
+
+        $mform->addElement('text', 'exams', 'No. of exam supervisions:');
+        $mform->setType('exams', PARAM_INT);
+
+        $mform->addElement('text', 'papers', 'No. of academic papers:');
+        $mform->setType('papers', PARAM_INT);
 
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);

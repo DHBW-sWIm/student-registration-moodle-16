@@ -8,7 +8,7 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-echo $OUTPUT->heading('Record planned Lecture Hours');
+echo $OUTPUT->heading('Record planned lecture hours');
 
 // Implement form for user
 require_once(__DIR__ . '/forms/f_lecturehours.php');
@@ -29,9 +29,11 @@ if ($mform->is_cancelled()) {
 
     $record = new stdClass();
     $record->firstname = $fromform->fname;
-    $record->surname   = $fromform->lname;
+    $record->surname   = $fromform->surname;
     $record->company   = $fromform->company;
     $record->hours     = $fromform->hours;
+    $record->exams     = $fromform->exams;
+    $record->papers     = $fromform->papers;
 
 /*    // insert $record
     $lastinsertid = $DB->insert_record($tablename, $record, false);
@@ -39,7 +41,7 @@ if ($mform->is_cancelled()) {
     // get all records
     $records = $DB->get_records($tablename, $params=null);
     $table_all_records = new html_table();
-    $table_all_records->head = array('First Name', 'Last Name', 'Company', 'Recorded Hours');
+    $table_all_records->head = array('First Name', 'Surame', 'Company', 'Planned Hours', 'Planned Exams', 'Planned Papers');
 
     // bind data to html table
     foreach ($records as $record) {
@@ -47,8 +49,10 @@ if ($mform->is_cancelled()) {
         $surname   = $record->surname;
         $company   = $record->company;
         $hours     = $record->hours;
+        $exams     = $record->exams;
+        $papers    = $record->papers;
 
-        $table_all_records->data[] = array($firstname, $surname, $company, $hours);
+        $table_all_records->data[] = array($firstname, $surname, $company, $hours, $exams, $papers);
     }
 
     // display records
