@@ -8,7 +8,7 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-echo $OUTPUT->heading('Record planned lecture hours');
+echo $OUTPUT->heading('Record Planned Lecture Hours');
 
 // Implement form for user
 require_once(__DIR__ . '/forms/f_lecturehours.php');

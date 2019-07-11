@@ -8,7 +8,7 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-echo $OUTPUT->heading('Student Registration Prototype');
+echo $OUTPUT->heading('Student Registration');
 
 // Implement form for user
 // v_studentreg.php gets fstudentreg class which extends moodleform

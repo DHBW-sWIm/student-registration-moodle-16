@@ -8,7 +8,7 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
-echo $OUTPUT->heading('Capacity Planning Prototype');
+echo $OUTPUT->heading('Demand Planning');
 
 // Implement form for user
 // v_demandreg.php gets fdemandreg class which extends moodleform

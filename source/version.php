@@ -3,7 +3,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component    = 'mod_studentregistration';
-$plugin->version      = 2019071108;
+$plugin->version      = 2019071116;
 $plugin->release      = 'v0.0';
 $plugin->requires     = 2014051200;
 $plugin->maturity     = MATURITY_ALPHA;
