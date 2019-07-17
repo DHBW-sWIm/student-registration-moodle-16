@@ -12,8 +12,8 @@ class flecturehours extends moodleform
 
         $mform->addElement('header', 'header', 'Add new Entry:');
 
-        $mform->addElement('text', 'fname', 'First name:');
-        $mform->setType('fname', PARAM_TEXT);
+        $mform->addElement('text', 'firstname', 'First name:');
+        $mform->setType('firstname', PARAM_TEXT);
         $mform->addRule('firstname', 'Please enter a first name', 'required');
 
         $mform->addElement('text', 'surname', 'Surname:');
@@ -24,8 +24,8 @@ class flecturehours extends moodleform
         $mform->setType('company', PARAM_TEXT);
         $mform->addRule('company', 'Please enter a company', 'required');
 
-        $mform->addElement('text', 'hours', 'No. of lecture hours:');
-        $mform->setType('hours', PARAM_INT);
+        $mform->addElement('text', 'lhours', 'No. of lecture hours:');
+        $mform->setType('lhours', PARAM_INT);
 
         $mform->addElement('text', 'exams', 'No. of exam supervisions:');
         $mform->setType('exams', PARAM_INT);
