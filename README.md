@@ -6,7 +6,7 @@ This Moodle Plugin has been created to realize the Student registration plugin. 
 1. Install [PhpStorm](https://www.jetbrains.com/phpstorm/download/#section=windows)
 1. Access to the Moodle instance for development (https://studentregistration.moodle-dhbw.de/)
 1. Access to the Adminer instance for DB Management (https://adminer.studentregistration.moodle-dhbw.de)
-1. Additional documentation on the Wiki Page (https://wiki.moodle-dhbw.de/Student_Registration)
+1. Additional documentation on the Wiki Page (https://wiki.moodle-dhbw.de/Student_Registration/Specification)
 
 ## Subproccesses
 * Dashboard to Display Statistics
