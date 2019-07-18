@@ -26,10 +26,10 @@ foreach ($records as $record) {
     $firstname = $record->firstname;
     $surname   = $record->surname;
     $company   = $record->company;
-    $hours     = $record->lhours;
+    $lhours     = $record->lhours;
     $exams     = $record->exams;
     $papers    = $record->papers;
-    $table_all_records->data[] = array($firstname, $surname, $company, $hours, $exams, $papers);
+    $table_all_records->data[] = array($firstname, $surname, $company, $lhours, $exams, $papers);
 }
 
 // print table
@@ -45,7 +45,7 @@ if ($mform->is_cancelled()) {
     $record->firstname = $fromform->firstname;
     $record->surname = $fromform->surname;
     $record->company = $fromform->company;
-    $record->hours = $fromform->lhours;
+    $record->lhours = $fromform->lhours;
     $record->exams = $fromform->exams;
     $record->papers = $fromform->papers;
 
