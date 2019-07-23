@@ -22,6 +22,8 @@ $mform->render();
 
 $tablename = 'studentregistration_course';
 $records = $DB->get_records_select($tablename,  $params=null);
+
+
 $table_all_records = new html_table();
 $table_all_records->head = array('Course acronym', 'No. of students', 'Specialisation', 'Year group', 'Semester start', 'Program director', 'Secretary');
 

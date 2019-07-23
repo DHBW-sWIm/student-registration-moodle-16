@@ -19,8 +19,21 @@ $client = new GuzzleHttp\Client();
 // Implement form for user
 require_once(__DIR__ . '/forms/start_form.php');
 
+$plannednumbers = 'studentregistration_demand';
+$plannedrecords = $DB->get_records_select($plannednumbers,  $params=null);
 
+// bind data to the variables of the charts
+foreach ($plannedrecords as $precord) {
+    $wi_am_plan = $precord->wi_am;
+    $wi_ds_plan   = $precord->wi_ds;
+    $wi_eg_plan   = $precord->wi_eg;
+    $wi_eh_plan     = $precord->wi_eh;
+    $imbit_plan     = $precord->wi_imbit;
+    $wi_sc_plan    = $precord->wi_sc;
+    $wi_se_plan    = $precord->wi_se;
 
+}
+/*
 //Variables
 $wi_am_plan = 40;
 $wi_ds_plan = 85;
@@ -29,7 +42,7 @@ $wi_eh_plan = 53;
 $imbit_plan = 115;
 $wi_sc_plan = 130;
 $wi_se_plan = 54;
-
+*/
 $wi_am_reg = 16;
 $wi_ds_reg = 28;
 $wi_eg_reg = 12;

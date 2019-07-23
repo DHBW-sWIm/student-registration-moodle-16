@@ -1,11 +1,20 @@
 <?php
 require_once("$CFG->libdir/formslib.php");
 
+
 class fstudentreg extends moodleform {
     //Add elements to form
+
+/*public function getcourseacronyms ()
+    {
+        global $DB;
+        $courseacronym = $DB->get_records_sql('SELECT courseacronym FROM {studentregistration_course}');
+        return ($courseacronym);
+    }*/
+
     public function definition() {
-        global $CFG;
-        global $USER;
+        //$courseacronyms = getcourseacronyms();
+
 
         $mform = $this->_form; // Don't forget the underscore!
 
@@ -33,7 +42,7 @@ class fstudentreg extends moodleform {
 
         $mform->addElement('text', 'course', 'Course:');
         $mform->setType('course', PARAM_TEXT);
-        $mform->addRule('course', 'Please enter a course', 'required');
+        $mform->addRule('course', 'Please select a course', 'required');
 
 
         $mform->addElement('text', 'company', 'Company:');
