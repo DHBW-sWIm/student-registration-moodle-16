@@ -168,5 +168,9 @@ echo "<style>.grid-container-heading{display:grid; grid-template-columns: 100%; 
 echo "<style>.grid-container2{display:grid; grid-template-columns: 25% 25% 25% 25%; background-color: #DCE2E6; padding:10px;} </style><div class='grid-container2'> <div>".$OUTPUT->render($chart5)."</div><div>".$OUTPUT->render($chart7)."</div><div>".$OUTPUT->render($chart8)."</div><div>".$OUTPUT->render($chart9)."</div></div>";
 echo "<style>.grid-container3{display:grid; grid-template-columns: 25% 25% 25% 25%; background-color: #DCE2E6; padding:10px;} </style><div class='grid-container3'> <div>".$OUTPUT->render($chart10)."</div><div>".$OUTPUT->render($chart2)."</div><div>".$OUTPUT->render($chart4)."</div></div>";
 
+// navigate back landing page (view.php)
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view.php', array('id' => $cm->id)),
+    'Back To Landing Page', $attributes = null);
+
 // Finish the page.
 echo $OUTPUT->footer();

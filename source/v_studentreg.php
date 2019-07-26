@@ -62,4 +62,9 @@ if ($mform->is_cancelled()) {
     //displays the form
     $mform->display();
 }
+
+// navigate back landing page (view.php)
+echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/view.php', array('id' => $cm->id)),
+    'Back To Landing Page', $attributes = null);
+
 echo $OUTPUT->footer();
