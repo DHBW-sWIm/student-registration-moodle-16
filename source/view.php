@@ -30,7 +30,8 @@ echo $OUTPUT->heading('Student Registration Landing Page');
     echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id)),
     'Student Registration', $attributes = null);
 
-
+    echo $OUTPUT->single_button(new moodle_url('/mod/studentregistration/v_deviation.php', array('id' => $cm->id)),
+    'TEST Deviation', $attributes = null);
 
     $mform = new start_form();
 
