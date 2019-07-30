@@ -19,7 +19,7 @@ This Moodle Plugin has been created to realize the Student registration plugin. 
 
 * Create a ZIP archive of the `/source` folder and name it according to your app.
 
-* Login in to the Moodle Instance , navigate to the Management of Moodle and select the Option to install a new plugin.
+* Login in to the Moodle Instance, navigate to the Management of Moodle and select the Option to install a new plugin.
 
 * Upload your ZIP archive and click the button to proceed. You do not need to edit any other fields in this interface. 
 
