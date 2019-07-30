@@ -17,7 +17,7 @@ interface course {
 }
 
 interface lecturers {
-    public function dbaccess($tablename);
+    public function dbaccess($tablename, $paramvalue);
     public function dbinsert($tablename, $record, $paramvalue);
 
 }
@@ -27,7 +27,7 @@ class dbcalls implements dashboard_dbcall
     public function dbaccess( $tablename, $paramvalue)
     {
         global $DB;
-        $DB->get_records_select($tablename,  $params=$paramvalue);
+        return $DB->get_records_select($tablename,  $params=$paramvalue);
 
     }
 }
@@ -37,7 +37,7 @@ class dbstudents implements student {
     public function dbaccess($tablename, $paramvalue)
     {
         global $DB;
-        $DB->get_records_select($tablename,  $params=$paramvalue);
+        return $DB->get_records_select($tablename,  $params=$paramvalue);
     }
 
     public function dbinsert($tablename, $record, $paramvalue)
@@ -51,7 +51,7 @@ class dbcourse implements course{
     public function dbaccess($tablename, $paramvalue)
     {
         global $DB;
-        $DB->get_records_select($tablename,  $params=$paramvalue);
+        return $DB->get_records_select($tablename,  $params=$paramvalue);
     }
 
     public function dbinsert($tablename, $record, $paramvalue)
@@ -63,10 +63,10 @@ class dbcourse implements course{
 
 class dblecturers implements lecturers{
 
-    public function dbaccess($tablename)
+    public function dbaccess($tablename,$paramvalue)
     {
         global $DB;
-        $DB->get_records_select($tablename,  $params=null);
+        return $DB->get_records_select($tablename,  $params=$paramvalue);
     }
 
     public function dbinsert($tablename, $record, $paramvalue)

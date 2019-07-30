@@ -23,12 +23,10 @@ $tablename = 'studentregistration_hours';
 //Instantiation of DB Access
 $dblecturers= new dblecturers();
 //Fetching records from DB
-$records = $DB->get_records_select($tablename,  $params=null);
-//$records = $dblecturers->dbaccess($tablename);
+//$records = $DB->get_records_select($tablename,  $params=null);
+$records = $dblecturers->dbaccess($tablename, null);
 
-/*<script>
-    console.log(<?= json_encode($dblecturers->dbaccess($tablename)); ?>);
-</script>*/
+
 $table_all_records = new html_table();
 $table_all_records->head = array('First Name', 'Surname', 'Company', 'No. of lecture hours', 'No. of exam supervisions', 'No. of academic papers');
 
