@@ -8,6 +8,9 @@ include(__DIR__ . '/view_init.php');
 
 global $SESSION;
 
+//Access the DB Interface
+include(__DIR__ . '/dbcalls.php');
+
 echo $OUTPUT->heading('Record Planned Lecture Hours');
 
 // Implement form for user
@@ -17,7 +20,15 @@ $mform = new flecturehours();
 $mform->render();
 
 $tablename = 'studentregistration_hours';
+//Instantiation of DB Access
+$dblecturers= new dblecturers();
+//Fetching records from DB
 $records = $DB->get_records_select($tablename,  $params=null);
+//$records = $dblecturers->dbaccess($tablename);
+
+/*<script>
+    console.log(<?= json_encode($dblecturers->dbaccess($tablename)); ?>);
+</script>*/
 $table_all_records = new html_table();
 $table_all_records->head = array('First Name', 'Surname', 'Company', 'No. of lecture hours', 'No. of exam supervisions', 'No. of academic papers');
 
@@ -49,8 +60,8 @@ if ($mform->is_cancelled()) {
     $record->exams = $fromform->exams;
     $record->papers = $fromform->papers;
 
-
-    $lastinsertid = $DB->insert_record($tablename, $record, false);    // redirect user
+    //Inserting records to DB
+    $lastinsertid = $dblecturers -> dbinsert($tablename,$record, false);
     $returnurl = new moodle_url('/mod/studentregistration/v_lecturehours.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {

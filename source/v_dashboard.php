@@ -3,14 +3,16 @@
 require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(__DIR__ . '/lib.php');
 require_once(__DIR__ . '/locallib.php');
-
 include(__DIR__ . '/view_init.php');
+
+//Access the DB Interface
+include(__DIR__ . '/dbcalls.php');
+
 
 global $SESSION;
 
 echo $OUTPUT->heading('Capacity Planning Dashboard');
 
-//Example of using .ini
 $ini = parse_ini_file(__DIR__ . '/.ini');
 $camunda_url = $ini['camunda_url'];
 
@@ -20,7 +22,8 @@ $client = new GuzzleHttp\Client();
 require_once(__DIR__ . '/forms/start_form.php');
 
 $plannednumbers = 'studentregistration_demand';
-$plannedrecords = $DB->get_records_select($plannednumbers,  $params=null);
+$dbcalls = new dbcalls();
+$plannedrecords = $dbcalls->dbaccess($plannednumbers, null);
 
 // bind data to the variables of the charts
 foreach ($plannedrecords as $precord) {
@@ -33,16 +36,7 @@ foreach ($plannedrecords as $precord) {
     $wi_se_plan    = $precord->wi_se;
 
 }
-/*
-//Variables
-$wi_am_plan = 40;
-$wi_ds_plan = 85;
-$wi_eg_plan = 30;
-$wi_eh_plan = 53;
-$imbit_plan = 115;
-$wi_sc_plan = 130;
-$wi_se_plan = 54;
-*/
+
 $wi_am_reg = 16;
 $wi_ds_reg = 28;
 $wi_eg_reg = 12;

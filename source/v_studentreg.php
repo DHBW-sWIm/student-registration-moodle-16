@@ -3,8 +3,10 @@
 require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(__DIR__ . '/lib.php');
 require_once(__DIR__ . '/locallib.php');
-
 include(__DIR__ . '/view_init.php');
+
+//Access the DB Interface
+include(__DIR__ . '/dbcalls.php');
 
 global $SESSION;
 
@@ -20,7 +22,11 @@ $mform->render();
 
 
 $tablename = 'studentregistration_students';
-$records = $DB->get_records_select($tablename,  $params=null);
+//Instantiation of DB Access
+$dbstudents= new dbstudents();
+//Fetching records from DB
+$records = $dbstudents->dbaccess($tablename, null);
+
 $table_all_records = new html_table();
 $table_all_records->head = array('First Name', 'Surname', 'Email Address', 'Date of Birth', 'Course', 'Company');
 
@@ -53,7 +59,8 @@ if ($mform->is_cancelled()) {
     $record->course = $fromform->course;
     $record->company = $fromform->company;
 
-    $lastinsertid = $DB->insert_record($tablename, $record, false);
+    //Inserting records to DB
+    $lastinsertid = $dbstudents -> dbinsert($tablename,$record, false);
     $returnurl = new moodle_url('/mod/studentregistration/v_studentreg.php', array('id' => $cm->id));
     redirect($returnurl);
 } else {
