@@ -9,7 +9,7 @@ include(__DIR__ . '/view_init.php');
 global $SESSION;
 
 //Access the DB Interface
-include(__DIR__ . '/dbcalls.php');
+include(__DIR__ . '/dbclasses.php');
 
 echo $OUTPUT->heading('Record Planned Lecture Hours');
 

@@ -6,7 +6,7 @@ require_once(__DIR__ . '/locallib.php');
 include(__DIR__ . '/view_init.php');
 
 //Access the DB Interface
-include(__DIR__ . '/dbcalls.php');
+include(__DIR__ . '/dbclasses.php');
 
 
 global $SESSION;

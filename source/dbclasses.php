@@ -2,25 +2,9 @@
 require_once(dirname(dirname(__DIR__)) . '/config.php');
 require_once(__DIR__ . '/lib.php');
 require_once(__DIR__ . '/locallib.php');
+include(__DIR__ . '/dbinterfaces.php');
 
-interface dashboard_dbcall{
-    public function dbaccess($tablename, $paramvalue);
-}
-interface student {
-    public function dbaccess($tablename, $paramvalue);
-    public function dbinsert($tablename, $record, $paramvalue);
-}
 
-interface course {
-    public function dbaccess($tablename, $paramvalue);
-    public function dbinsert($tablename, $record, $paramvalue);
-}
-
-interface lecturers {
-    public function dbaccess($tablename, $paramvalue);
-    public function dbinsert($tablename, $record, $paramvalue);
-
-}
 class dbcalls implements dashboard_dbcall
 {
 
